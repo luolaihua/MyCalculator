@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class TwoCompute extends AppCompatActivity implements View.OnClickListener{
+public class TwoCompute extends BaseActivity implements View.OnClickListener{
     private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult ;
     private EditText edt_0,edt_1,edt_2,edt_3,
             edt2_0,edt2_1,edt2_2,edt2_3;

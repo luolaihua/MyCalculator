@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import java.text.DecimalFormat;
 
-public class ThreeCompute extends AppCompatActivity implements View.OnClickListener{
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult ;
+public class ThreeCompute extends BaseActivity implements View.OnClickListener{
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,sovle,sovleTran;
     private EditText edt_0,edt_1,edt_2,edt_3,edt_4,edt_5,edt_6,edt_7,edt_8,
             edt2_0,edt2_1,edt2_2,edt2_3,edt2_4,edt2_5,edt2_6,edt2_7,edt2_8;
 
@@ -35,10 +35,14 @@ public class ThreeCompute extends AppCompatActivity implements View.OnClickListe
         tv_sub = (TextView) findViewById(R.id.tv_sub);
         tv_mult = (TextView) findViewById(R.id.tv_mult);
         tv_equal = (TextView) findViewById(R.id.tv_equal);
+        sovle = (TextView) findViewById(R.id.sovle);
+        sovleTran = (TextView) findViewById(R.id.sovleTran);
 
         tv_add.setOnClickListener(this);
         tv_sub.setOnClickListener(this);
         tv_mult.setOnClickListener(this);
+        sovle.setOnClickListener(this);
+        sovleTran.setOnClickListener(this);
 
         edt2_0 = (EditText) findViewById(R.id.edtInput2_0);
         edt2_1 = (EditText) findViewById(R.id.edtInput2_1);
@@ -92,6 +96,11 @@ public class ThreeCompute extends AppCompatActivity implements View.OnClickListe
                         result = MyJama.matrixSub(m,n);break;
                     case 3:
                         result = MyJama.matrixMult(m,n);break;
+                    case 4:
+                        result = MyJama.matrixSolve(m,n);break;
+                    case 5:
+                        result = MyJama.matrixSolveTran(m,n);break;
+
                 }
 
 
@@ -119,20 +128,41 @@ public class ThreeCompute extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_add:
-                    tv_add.setBackgroundColor(Color.parseColor("#B0D6F5"));
-                    tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                    tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_add.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 1;break;
             case R.id.tv_sub:
                 tv_sub.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 2;break;
             case R.id.tv_mult:
                 tv_mult.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 3;break;
+            case R.id.sovle:
+                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                flag = 4;break;
+            case R.id.sovleTran:
+                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                flag = 5;break;
+
 
         }
     }

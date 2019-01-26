@@ -9,6 +9,10 @@
         android:title="二阶矩阵运算"
         />
     <item
+        android:id="@+id/four"
+        android:title="四阶矩阵运算"
+        />
+    <item
         android:id="@+id/analysis"
         android:title="矩阵分析"
         />

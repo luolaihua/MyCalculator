@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class FourCompute extends AppCompatActivity implements View.OnClickListener{
+public class FourCompute extends BaseActivity implements View.OnClickListener{
     private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_solve,tv_solveTran;
     private EditText edt_0,edt_1,edt_2,edt_3,edt_4,edt_5,edt_6,edt_7,edt_8,
             edt_9,edt_10,edt_11,edt_12,edt_13,edt_14,edt_15,
