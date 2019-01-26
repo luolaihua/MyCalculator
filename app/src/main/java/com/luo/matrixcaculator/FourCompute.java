@@ -1,14 +1,16 @@
 package com.luo.matrixcaculator;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class FourCompute extends BaseActivity implements View.OnClickListener{
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_solve,tv_solveTran;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_solve,tv_solveTran,tv_analysisA,tv_analysisB;
     private EditText edt_0,edt_1,edt_2,edt_3,edt_4,edt_5,edt_6,edt_7,edt_8,
             edt_9,edt_10,edt_11,edt_12,edt_13,edt_14,edt_15,
             edt2_0,edt2_1,edt2_2,edt2_3,edt2_4,edt2_5,edt2_6,edt2_7,edt2_8,
@@ -33,12 +35,17 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
         tv_equal = (TextView) findViewById(R.id.four_tv_equal);
         tv_solve = (TextView) findViewById(R.id.four_sovle);
         tv_solveTran = (TextView) findViewById(R.id.four_sovleTran);
+        tv_analysisA = (TextView) findViewById(R.id.four_analysisA);
+        tv_analysisB = (TextView) findViewById(R.id.four_analysisB);
+
 
         tv_add.setOnClickListener(this);
         tv_sub.setOnClickListener(this);
         tv_mult.setOnClickListener(this);
         tv_solve.setOnClickListener(this);
         tv_solveTran.setOnClickListener(this);
+        tv_analysisA.setOnClickListener(this);
+        tv_analysisB.setOnClickListener(this);
 
         edt2_0 = (EditText) findViewById(R.id.four_edtInput2_0);
         edt2_1 = (EditText) findViewById(R.id.four_edtInput2_1);
@@ -198,6 +205,13 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                 tv_solve.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_solveTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
+            case R.id.four_analysisA:
+                double[] a = MyJama.TwotoOne(m);
+                Log.d("111111111111111",""+a[0]+a[2]);
+                System.out.println(""+a[0]);
+                Intent intent = new Intent(FourCompute.this, Analysis.class);
+                intent.putExtra("dataA",a);
+                startActivity(intent);
 
         }
     }

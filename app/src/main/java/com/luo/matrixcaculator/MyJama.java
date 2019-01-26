@@ -74,4 +74,16 @@ public class MyJama {
         return A.getArray();
     }
 
+    public static double[] TwotoOne(double[][] two) {
+        double [] one;
+        int len = two.length*two.length;
+        one=new double[len];
+        int index=0;
+        for(int i=0;i<two.length;i++){
+            for(int j=0;j<two[i].length;j++){
+                one[index++]=two[i][j];
+            }
+        }
+        return one;
+    }
 }

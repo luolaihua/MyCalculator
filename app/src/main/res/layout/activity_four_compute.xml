@@ -14,7 +14,7 @@
         <TextView
             android:background="#6FE2EDF5"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:text="A"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -254,6 +254,30 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/four_analysisA"
+                android:background="#6FE2EDF5"
+                android:text="分析A"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/four_analysisB"
+                android:background="#6FE2EDF5"
+                android:text="分析B"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -263,7 +287,7 @@
         <TextView
             android:background="#6FE2EDF5"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:text="B"
             android:layout_width="0dp"
             android:layout_weight="1"

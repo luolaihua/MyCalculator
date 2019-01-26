@@ -1,6 +1,11 @@
 package com.luo.matrixcaculator;
+import android.os.Bundle;
+
 import Jama.Matrix;
 public class JamaTest {
+    public static final String ARRAYS_COUNT = "com.yourname.ARRAYS_COUNT";
+
+    public static final String ARRAY_INDEX = "com.yourname.ARRAY_INDEX";
     public static void main(String[] args) {
         /*
 
@@ -25,12 +30,39 @@ public class JamaTest {
         double [][] array = {{-1,1,0},{-4,3,0}, {1 ,0,2}};
         double[][] array2 = {{4,5,6},{4,5,6},{7,8,10}};
         double[][] array3;
-        Matrix m1 = new Matrix(array);
+        /*Matrix m1 = new Matrix(array);
         Matrix m2 = new Matrix(array2);
         Matrix m3 = Matrix.random(3,1);
         m1 = m1.times(m2);
         array3 = m1.getArray();
         MatrixTest.dispMatrix(array3);
+*/
+/*
+            int num[][]=new int[][]{{1,2,3},{4,5,6},{7,8,99}};
+            int [] one;
+            System.out.println(num.length);
+            int len = num.length*num.length;
+
+            System.out.println(len);
+            one=new int[len];
+            int index=0;
+            for(int i=0;i<num.length;i++){
+                for(int j=0;j<num[i].length;j++){
+                    one[index++]=num[i][j];
+                }
+            }*/
+//创建一个一维数组 0,1,2,3...,10
+        double [] c= MyJama.TwotoOne(array2);
+        for (int i = 0; i < c.length; i++) {
+            System.out.println(c[i]);
+        }
+        double len = c.length;
+        double index = Math.sqrt(len);
+        //System.out.println(index);
+    }
+
+}
+
 
 
 
@@ -69,6 +101,3 @@ System.out.println("--------------");
       //  A.eig().getV()----返回特征向量组成的矩阵
       //  A.eig().getV().print(4,2);
 
-    }
-
-}
