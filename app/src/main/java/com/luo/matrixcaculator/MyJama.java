@@ -86,4 +86,29 @@ public class MyJama {
         }
         return one;
     }
+    public static double[][] OneToTwo(double[] one) {
+
+        return new Matrix(one,(int)Math.sqrt(one.length)).transpose().getArray();
+    }
+
+
+
+    public static double[][] getResult(double[][] m,double[][] n,int flag){
+
+        double[][] result = m;
+
+        switch (flag){
+            case 1:
+                result = MyJama.matrixAdd(m,n);break;
+            case 2:
+                result = MyJama.matrixSub(m,n);break;
+            case 3:
+                result = MyJama.matrixMult(m,n);break;
+            case 4:
+                result = MyJama.matrixSolve(m,n);break;
+            case 5:
+                result = MyJama.matrixSolveTran(m,n);break;
+        }
+        return result;
+    }
 }

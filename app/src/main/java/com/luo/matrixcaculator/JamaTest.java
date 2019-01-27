@@ -28,7 +28,7 @@ public class JamaTest {
                           Solve X*A = B, which is also A'*X' = B'
         * */
         double [][] array = {{-1,1,0},{-4,3,0}, {1 ,0,2}};
-        double[][] array2 = {{4,5,6},{4,5,6},{7,8,10}};
+        double[][] array2 = {{1,2,3},{4,5,6},{7,8,10}};
         double[][] array3;
         /*Matrix m1 = new Matrix(array);
         Matrix m2 = new Matrix(array2);
@@ -56,8 +56,9 @@ public class JamaTest {
         for (int i = 0; i < c.length; i++) {
             System.out.println(c[i]);
         }
-        double len = c.length;
-        double index = Math.sqrt(len);
+
+        MatrixTest.dispMatrix(MyJama.OneToTwo(c));
+
         //System.out.println(index);
     }
 

@@ -14,9 +14,9 @@ public class Analysis extends AppCompatActivity {
         Intent intent = getIntent();
 
         //String m = intent.getStringExtra("dataA");
-        double[] m=intent.getDoubleArrayExtra("dataA");
+        double[] k =intent.getDoubleArrayExtra("dataA");
         TextView textView = (TextView) findViewById(R.id.show);
        // textView.setText(m[1]+"  "+m[2]+"  "+m[3]+"  "+m[4]+"  "+m[5]+"  "+m[6]+"  "+m[7]+"  ");
-        textView.setText(m[0]+"");
+        textView.setText(k[0]+"");
     }
 }

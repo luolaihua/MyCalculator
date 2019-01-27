@@ -125,7 +125,12 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                 m[3][1] = Double.parseDouble(edt_13.getText().toString());
                 m[3][2] = Double.parseDouble(edt_14.getText().toString());
                 m[3][3] = Double.parseDouble(edt_15.getText().toString());
-                switch (flag){
+
+
+
+
+                result = MyJama.getResult(m, n, flag);
+               /* switch (flag){
                     case 1:
                         result = MyJama.matrixAdd(m,n);break;
                     case 2:
@@ -136,7 +141,7 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                         result = MyJama.matrixSolve(m,n);break;
                     case 5:
                         result = MyJama.matrixSolveTran(m,n);break;
-                }
+                }*/
 
 
 
@@ -206,12 +211,7 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                 tv_solveTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
             case R.id.four_analysisA:
-                double[] a = MyJama.TwotoOne(m);
-                Log.d("111111111111111",""+a[0]+a[2]);
-                System.out.println(""+a[0]);
-                Intent intent = new Intent(FourCompute.this, Analysis.class);
-                intent.putExtra("dataA",a);
-                startActivity(intent);
+                break;
 
         }
     }

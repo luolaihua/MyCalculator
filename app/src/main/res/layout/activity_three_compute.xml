@@ -183,6 +183,29 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"/>
         </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/three_analysisA"
+                android:background="#6FE2EDF5"
+                android:text="分析A"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/three_analysisB"
+                android:background="#6FE2EDF5"
+                android:text="分析B"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
@@ -304,7 +327,7 @@
         android:id="@+id/tv_equal"
         android:gravity="center"
         android:text="="
-        android:textSize="50sp"
+        android:textSize="36sp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>

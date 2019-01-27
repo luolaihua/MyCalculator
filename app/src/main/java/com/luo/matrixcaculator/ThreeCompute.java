@@ -89,7 +89,10 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 m[2][0] = Double.parseDouble(edt_6.getText().toString());
                 m[2][1] = Double.parseDouble(edt_7.getText().toString());
                 m[2][2] = Double.parseDouble(edt_8.getText().toString());
-                switch (flag){
+
+
+                result = MyJama.getResult(m, n, flag);
+                /*switch (flag){
                     case 1:
                         result = MyJama.matrixAdd(m,n);break;
                     case 2:
@@ -101,7 +104,7 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                     case 5:
                         result = MyJama.matrixSolveTran(m,n);break;
 
-                }
+                }*/
 
 
 
