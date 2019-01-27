@@ -27,37 +27,66 @@ public class JamaTest {
                 solveTranspose(Matrix B)
                           Solve X*A = B, which is also A'*X' = B'
         * */
-        double [][] array = {{-1,1,0},{-4,3,0}, {1 ,0,2}};
-        double[][] array2 = {{1,2,3},{4,5,6},{7,8,10}};
+        double [][] array = {{10,9.6},{5.9,3.4}};
+        double[][] array2 = {{1,2,3},{4,5,6},{7,8,9}};
         double[][] array3;
-        /*Matrix m1 = new Matrix(array);
+        Matrix m1 = new Matrix(array);
         Matrix m2 = new Matrix(array2);
         Matrix m3 = Matrix.random(3,1);
-        m1 = m1.times(m2);
+        /*m1 = m1.times(m2);
         array3 = m1.getArray();
-        MatrixTest.dispMatrix(array3);
-*/
-/*
-            int num[][]=new int[][]{{1,2,3},{4,5,6},{7,8,99}};
-            int [] one;
-            System.out.println(num.length);
-            int len = num.length*num.length;
+        MatrixTest.dispMatrix(array3);*/
 
-            System.out.println(len);
-            one=new int[len];
-            int index=0;
+        System.out.println(m1.det());
+        System.out.println(m1.rank());
+
+        System.out.println("--------------");
+        System.out.println(m2.det());
+        if(m2.det()==0){
+            System.out.println("*********************");
+        }
+        System.out.println(m2.rank());
+
+
+
+
+/*
+
+            double num[][]=new double[][]{{1,2,3},{4,5,6},{7,8,9}};
+        double[] aaa = MyJama.TwotoOne(num);
+        StringBuilder stringBuilder = MyJama.output(aaa);
+        System.out.println(stringBuilder.toString());
+*/
+
+          //  System.out.println(len);
+           // one=new int[len];
+          /*  int index=0;
             for(int i=0;i<num.length;i++){
                 for(int j=0;j<num[i].length;j++){
-                    one[index++]=num[i][j];
+                    stringBuilder.append(num[i][j]+"   ");
                 }
+                stringBuilder.append("\n");
             }*/
+            //System.out.println(stringBuilder.toString());
 //创建一个一维数组 0,1,2,3...,10
-        double [] c= MyJama.TwotoOne(array2);
+       /* double [] c= MyJama.TwotoOne(array2);
         for (int i = 0; i < c.length; i++) {
             System.out.println(c[i]);
         }
-
-        MatrixTest.dispMatrix(MyJama.OneToTwo(c));
+        int row = (int) Math.sqrt(c.length);
+        System.out.println(c.length);
+        System.out.println(row);
+        System.out.println("*********************"+0%3);
+        StringBuffer sb = new StringBuffer();
+        for(int i = 0; i < c.length; i++){
+           if((i+1) % row == 0){
+               sb.append(c[i]+"\n");
+           }else{
+               sb.append(c[i]+", ");
+           }
+        }
+        System.out.println(sb.toString());*/
+        //MatrixTest.dispMatrix(MyJama.OneToTwo(c));
 
         //System.out.println(index);
     }
@@ -68,13 +97,8 @@ public class JamaTest {
 
 
 
-/*
-        System.out.println(m1.det());
-        System.out.println(m1.rank());
 
-System.out.println("--------------");
-        System.out.println(m2.det());
-        System.out.println(m2.rank());*/
+
 
 
 

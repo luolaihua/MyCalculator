@@ -20,7 +20,8 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
 
     private double[][] m = new double[4][4];
     private double[][] n = new double[4][4];
-    private double[][] result = new double[4][4];
+    private double[][] result,eigD,eigV,inverse,transpose;
+    private double rank,det;
 
 
     @Override
@@ -211,6 +212,49 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                 tv_solveTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
             case R.id.four_analysisA:
+                m[0][0] = Double.parseDouble(edt_0.getText().toString());
+                m[0][1] = Double.parseDouble(edt_1.getText().toString());
+                m[0][2] = Double.parseDouble(edt_2.getText().toString());
+                m[0][3] = Double.parseDouble(edt_3.getText().toString());
+                m[1][0] = Double.parseDouble(edt_4.getText().toString());
+                m[1][1] = Double.parseDouble(edt_5.getText().toString());
+                m[1][2] = Double.parseDouble(edt_6.getText().toString());
+                m[1][3] = Double.parseDouble(edt_7.getText().toString());
+                m[2][0] = Double.parseDouble(edt_8.getText().toString());
+                m[2][1] = Double.parseDouble(edt_9.getText().toString());
+                m[2][2] = Double.parseDouble(edt_10.getText().toString());
+                m[2][3] = Double.parseDouble(edt_11.getText().toString());
+                m[3][0] = Double.parseDouble(edt_12.getText().toString());
+                m[3][1] = Double.parseDouble(edt_13.getText().toString());
+                m[3][2] = Double.parseDouble(edt_14.getText().toString());
+                m[3][3] = Double.parseDouble(edt_15.getText().toString());
+
+                Intent intent = new Intent(FourCompute.this, Analysis.class);
+
+                rank = MyJama.matrixRank(m);
+                det = MyJama.matrixDet(m);
+                transpose = MyJama.matrixTranspose(m);
+                eigD = MyJama.matrixEigD(m);
+                eigV = MyJama.matrixEigV(m);
+
+                double[] tranOne = MyJama.TwotoOne(transpose);
+                double[] eigDOne = MyJama.TwotoOne(eigD);
+                double[] eigVOne = MyJama.TwotoOne(eigV);
+
+
+                intent.putExtra("rank",rank);
+                intent.putExtra("det", det);
+                intent.putExtra("transpose", tranOne);
+                intent.putExtra("eigD", eigDOne);
+                intent.putExtra("eigV", eigVOne);
+
+                if(det != 0){
+                    inverse = MyJama.matrixInverse(m);
+                    double[] inverseOne = MyJama.TwotoOne(inverse);
+                    intent.putExtra("inverse", inverseOne);
+                }
+
+                startActivity(intent);
                 break;
 
         }

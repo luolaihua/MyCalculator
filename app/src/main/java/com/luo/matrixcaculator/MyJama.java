@@ -48,6 +48,20 @@ public class MyJama {
 
     }
 
+    public static double[][] matrixEigD(double[][] m) {
+
+        Matrix A = new Matrix(m);
+        return A.eig().getD().getArray();
+
+    }
+    public static double[][] matrixEigV(double[][] m) {
+
+        Matrix A = new Matrix(m);
+        return A.eig().getV().getArray();
+
+    }
+
+
     public static double matrixDet(double[][] m) {
 
         Matrix A = new Matrix(m);
@@ -90,9 +104,6 @@ public class MyJama {
 
         return new Matrix(one,(int)Math.sqrt(one.length)).transpose().getArray();
     }
-
-
-
     public static double[][] getResult(double[][] m,double[][] n,int flag){
 
         double[][] result = m;
@@ -110,5 +121,28 @@ public class MyJama {
                 result = MyJama.matrixSolveTran(m,n);break;
         }
         return result;
+    }
+
+    public static StringBuilder output(double[] c) {
+        StringBuilder sb = new StringBuilder();
+        int row = (int) Math.sqrt(c.length);
+        for(int i = 0; i < c.length; i++){
+            if((i+1) % row == 0){
+                sb.append(String.format("%.3f", c[i])+"\n");
+            }else{
+                sb.append(String.format("%.3f", c[i])+",  ");
+            }
+        }
+        return sb;
+    }
+    public static StringBuilder output(double[][] cc) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<cc.length;i++){
+            for(int j=0;j<cc[i].length;j++){
+                sb.append(String.format("%.3f", cc[i][j])+"   ");
+            }
+            sb.append("\n");
+        }
+        return sb;
     }
 }
