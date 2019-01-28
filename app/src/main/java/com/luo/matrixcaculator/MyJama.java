@@ -14,8 +14,6 @@ public class MyJama {
             System.out.println();
         }
     }
-
-
     public static double[][] matrixAdd(double[][] m,double[][] n) {
 
         Matrix A = new Matrix(m);
@@ -40,14 +38,12 @@ public class MyJama {
         Matrix A = new Matrix(m);
         return A.inverse().getArray();
     }
-
     public static double[][] matrixTranspose(double[][] m) {
 
         Matrix A = new Matrix(m);
         return A.transpose().getArray();
 
     }
-
     public static double[][] matrixEigD(double[][] m) {
 
         Matrix A = new Matrix(m);
@@ -60,8 +56,6 @@ public class MyJama {
         return A.eig().getV().getArray();
 
     }
-
-
     public static double matrixDet(double[][] m) {
 
         Matrix A = new Matrix(m);
@@ -74,7 +68,6 @@ public class MyJama {
         return A.rank();
 
     }
-
     public static double[][] matrixSolve(double[][] m,double[][] n) {
         Matrix A = new Matrix(m);
         Matrix B = new Matrix(n);
@@ -87,7 +80,6 @@ public class MyJama {
         A = A.solveTranspose(B);
         return A.getArray();
     }
-
     public static double[] TwotoOne(double[][] two) {
         double [] one;
         int len = two.length*two.length;
@@ -122,7 +114,6 @@ public class MyJama {
         }
         return result;
     }
-
     public static StringBuilder output(double[] c) {
         StringBuilder sb = new StringBuilder();
         int row = (int) Math.sqrt(c.length);
@@ -145,4 +136,28 @@ public class MyJama {
         }
         return sb;
     }
+    public static double[][] OneToTwo(double[] one,int row,int column) {
+        double[][] m = new double[row][column];
+        int index=0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                m[i][j] = one[index];
+                index++;
+            }
+        }
+        return m;
+    }
+
+    public static double[] StrToNum(String a) {
+
+        String[] b = a.replaceAll("\n",",").split(",");
+        double [] num = new double[b.length];
+        for (int i = 0; i < b.length; i++) {
+            num[i] = Double.parseDouble(b[i]);
+        }
+        return num;
+    }
+
+
+
 }

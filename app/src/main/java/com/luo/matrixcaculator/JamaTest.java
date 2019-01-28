@@ -3,10 +3,51 @@ import android.os.Bundle;
 
 import Jama.Matrix;
 public class JamaTest {
-    public static final String ARRAYS_COUNT = "com.yourname.ARRAYS_COUNT";
 
-    public static final String ARRAY_INDEX = "com.yourname.ARRAY_INDEX";
     public static void main(String[] args) {
+        String a= "1,2,3,4\n5,6,7,8\n9,10,11,12";
+        String c=a.replaceAll("\n",",");
+        String[] b = c.split(",");
+        double [] num = new double[b.length];
+        for (int i = 0; i < b.length; i++) {
+            num[i] = Double.parseDouble(b[i]);
+        }
+        System.out.println("--------------"+num.length);
+        for (int i = 0; i < num.length; i++) {
+            System.out.println( num[i] );
+        }
+
+
+        //初始数据 row，column，num[]
+        int row = 3,column = 4;
+
+        double[][] m = new double[row][column];
+            int index=0;
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j <column; j++) {
+                    m[i][j] = num[index];
+                    index++;
+            }
+        }
+
+
+        MatrixTest.dispMatrix(m);
+
+        String array2 = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15";
+        double[] num1 = MyJama.StrToNum(array2);
+        MyJama.dispMatrix(MyJama.OneToTwo(num1,5,3));
+        //MyJama.dispMatrix(MyJama.OneToTwo(array2,3,5));
+
+
+
+
+
+
+
+
+
+
+
         /*
 
      set 方法    set(int i, int j, double s)
@@ -27,17 +68,17 @@ public class JamaTest {
                 solveTranspose(Matrix B)
                           Solve X*A = B, which is also A'*X' = B'
         * */
-        double [][] array = {{10,9.6},{5.9,3.4}};
+   /*     double [][] array = {{10,9.6},{5.9,3.4}};
         double[][] array2 = {{1,2,3},{4,5,6},{7,8,9}};
         double[][] array3;
         Matrix m1 = new Matrix(array);
         Matrix m2 = new Matrix(array2);
-        Matrix m3 = Matrix.random(3,1);
+        Matrix m3 = Matrix.random(3,1);*/
         /*m1 = m1.times(m2);
         array3 = m1.getArray();
         MatrixTest.dispMatrix(array3);*/
 
-        System.out.println(m1.det());
+      /*  System.out.println(m1.det());
         System.out.println(m1.rank());
 
         System.out.println("--------------");
@@ -47,7 +88,7 @@ public class JamaTest {
         }
         System.out.println(m2.rank());
 
-
+*/
 
 
 /*
