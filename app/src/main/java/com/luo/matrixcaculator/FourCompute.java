@@ -2,12 +2,17 @@ package com.luo.matrixcaculator;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.luo.matrixcaculator.robo.ChatMainActivity;
 
 public class FourCompute extends BaseActivity implements View.OnClickListener{
     private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_solve,tv_solveTran,tv_analysisA,tv_analysisB;
@@ -28,6 +33,35 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_four_compute);
+
+
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_two:
+                        Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
+                        startActivity(intent);finish();break;
+                    case R.id.nav_three:
+                        Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
+                        startActivity(intent1);finish();break;
+                    case R.id.nav_four:
+                        Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
+                        startActivity(intent2);finish();break;
+                    case R.id.nav_help:
+                        Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
+                        startActivity(intent3);finish();break;
+                }
+
+
+                return true;
+            }
+        });
+
+
 
         tv_result = (TextView) findViewById(R.id.four_tv_result);
         tv_add =(TextView) findViewById(R.id.four_tv_add);

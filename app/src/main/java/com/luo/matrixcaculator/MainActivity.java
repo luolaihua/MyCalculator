@@ -64,15 +64,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.nav_two:
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
                         startActivity(intent);break;
                     case R.id.nav_three:
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
                         startActivity(intent1);break;
                     case R.id.nav_four:
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
                         startActivity(intent2);break;
                     case R.id.nav_help:
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                         startActivity(intent3);break;
                 }
