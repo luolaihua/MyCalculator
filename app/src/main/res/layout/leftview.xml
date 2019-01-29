@@ -8,7 +8,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="180dp">
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/icon_image"
                 android:src="@drawable/panda"
                 android:layout_centerInParent="true"
