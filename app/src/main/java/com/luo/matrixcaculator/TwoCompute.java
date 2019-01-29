@@ -17,7 +17,8 @@ import android.widget.TextView;
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
 public class TwoCompute extends BaseActivity implements View.OnClickListener{
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_analysisA,tv_analysisB;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,
+            tv_analysisA,tv_analysisB,tv_clearAll;
     private EditText edt_0,edt_1,edt_2,edt_3,
             edt2_0,edt2_1,edt2_2,edt2_3;
 
@@ -75,6 +76,7 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
         tv_sovleTran = (TextView) findViewById(R.id.two_sovleTran);
         tv_analysisA = (TextView) findViewById(R.id.two_analysisA);
         tv_analysisB = (TextView) findViewById(R.id.two_analysisB);
+        tv_clearAll = (TextView) findViewById(R.id.two_clearAll);
 
         tv_add.setOnClickListener(this);
         tv_sub.setOnClickListener(this);
@@ -83,6 +85,7 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
         tv_sovleTran.setOnClickListener(this);
         tv_analysisA.setOnClickListener(this);
         tv_analysisB.setOnClickListener(this);
+        tv_clearAll.setOnClickListener(this);
 
         edt2_0 = (EditText) findViewById(R.id.two_edtInput2_0);
         edt2_1 = (EditText) findViewById(R.id.two_edtInput2_1);
@@ -245,6 +248,16 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
                 }
 
                 startActivity(intent1);break;
+            case R.id.two_clearAll:
+                edt_0.setText("0");
+                edt_1.setText("0");
+                edt_2.setText("0");
+                edt_3.setText("0");
+                edt2_0.setText("0");
+                edt2_1.setText("0");
+                edt2_2.setText("0");
+                edt2_3.setText("0");
+                tv_result.setText("0  0\n0  0");
         }
     }
 }

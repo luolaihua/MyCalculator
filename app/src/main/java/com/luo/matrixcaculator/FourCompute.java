@@ -15,7 +15,8 @@ import android.widget.TextView;
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
 public class FourCompute extends BaseActivity implements View.OnClickListener{
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_solve,tv_solveTran,tv_analysisA,tv_analysisB;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_solve,tv_solveTran,
+            tv_analysisA,tv_analysisB,tv_clearAll;
     private EditText edt_0,edt_1,edt_2,edt_3,edt_4,edt_5,edt_6,edt_7,edt_8,
             edt_9,edt_10,edt_11,edt_12,edt_13,edt_14,edt_15,
             edt2_0,edt2_1,edt2_2,edt2_3,edt2_4,edt2_5,edt2_6,edt2_7,edt2_8,
@@ -74,6 +75,7 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
         tv_solveTran = (TextView) findViewById(R.id.four_sovleTran);
         tv_analysisA = (TextView) findViewById(R.id.four_analysisA);
         tv_analysisB = (TextView) findViewById(R.id.four_analysisB);
+        tv_clearAll = (TextView) findViewById(R.id.four_clearAll);
 
 
         tv_add.setOnClickListener(this);
@@ -83,6 +85,7 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
         tv_solveTran.setOnClickListener(this);
         tv_analysisA.setOnClickListener(this);
         tv_analysisB.setOnClickListener(this);
+        tv_clearAll.setOnClickListener(this);
 
         edt2_0 = (EditText) findViewById(R.id.four_edtInput2_0);
         edt2_1 = (EditText) findViewById(R.id.four_edtInput2_1);
@@ -292,6 +295,87 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
 
                 startActivity(intent);
                 break;
+            case R.id.four_analysisB:
+                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
+                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
+                n[0][2] = Double.parseDouble(edt2_2.getText().toString());
+                n[0][3] = Double.parseDouble(edt2_3.getText().toString());
+                n[1][0] = Double.parseDouble(edt2_4.getText().toString());
+                n[1][1] = Double.parseDouble(edt2_5.getText().toString());
+                n[1][2] = Double.parseDouble(edt2_6.getText().toString());
+                n[1][3] = Double.parseDouble(edt2_7.getText().toString());
+                n[2][0] = Double.parseDouble(edt2_8.getText().toString());
+                n[2][1] = Double.parseDouble(edt2_9.getText().toString());
+                n[2][2] = Double.parseDouble(edt2_10.getText().toString());
+                n[2][3] = Double.parseDouble(edt2_11.getText().toString());
+                n[3][0] = Double.parseDouble(edt2_12.getText().toString());
+                n[3][1] = Double.parseDouble(edt2_13.getText().toString());
+                n[3][2] = Double.parseDouble(edt2_14.getText().toString());
+                n[3][3] = Double.parseDouble(edt2_15.getText().toString());
+
+                Intent intent1 = new Intent(FourCompute.this, Analysis.class);
+
+                rank = MyJama.matrixRank(n);
+                det = MyJama.matrixDet(n);
+                transpose = MyJama.matrixTranspose(n);
+                eigD = MyJama.matrixEigD(n);
+                eigV = MyJama.matrixEigV(n);
+
+                double[] tranOne1 = MyJama.TwotoOne(transpose);
+                double[] eigDOne1 = MyJama.TwotoOne(eigD);
+                double[] eigVOne1 = MyJama.TwotoOne(eigV);
+
+
+                intent1.putExtra("rank",rank);
+                intent1.putExtra("det", det);
+                intent1.putExtra("transpose", tranOne1);
+                intent1.putExtra("eigD", eigDOne1);
+                intent1.putExtra("eigV", eigVOne1);
+
+                if(det != 0){
+                    inverse = MyJama.matrixInverse(n);
+                    double[] inverseOne = MyJama.TwotoOne(inverse);
+                    intent1.putExtra("inverse", inverseOne);
+                }
+
+                startActivity(intent1);
+                break;
+            case R.id.three_clearAll:
+                edt_0.setText("0");
+                edt_1.setText("0");
+                edt_2.setText("0");
+                edt_3.setText("0");
+                edt_4.setText("0");
+                edt_5.setText("0");
+                edt_6.setText("0");
+                edt_7.setText("0");
+                edt_8.setText("0");
+                edt_9.setText("0");
+                edt_10.setText("0");
+                edt_11.setText("0");
+                edt_12.setText("0");
+                edt_13.setText("0");
+                edt_14.setText("0");
+                edt_15.setText("0");
+
+                edt2_0.setText("0");
+                edt2_1.setText("0");
+                edt2_2.setText("0");
+                edt2_3.setText("0");
+                edt2_4.setText("0");
+                edt2_5.setText("0");
+                edt2_6.setText("0");
+                edt2_7.setText("0");
+                edt2_8.setText("0");
+                edt2_9.setText("0");
+                edt2_10.setText("0");
+                edt2_11.setText("0");
+                edt2_12.setText("0");
+                edt2_13.setText("0");
+                edt2_14.setText("0");
+                edt2_15.setText("0");
+                tv_result.setText("0  0  0  0\n0  0  0  0\n0  0  0  0\n0  0  0  0\n");
+
 
         }
     }

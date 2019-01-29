@@ -5,7 +5,7 @@ import Jama.Matrix;
 public class JamaTest {
 
     public static void main(String[] args) {
-        String a= "1,2,3,4\n5,6,7,8\n9,10,11,12";
+       /* String a= "1,2,3,4\n5,6,7,8\n9,10,11,12";
         String c=a.replaceAll("\n",",");
         String[] b = c.split(",");
         double [] num = new double[b.length];
@@ -36,7 +36,7 @@ public class JamaTest {
         String array2 = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15";
         double[] num1 = MyJama.StrToNum(array2);
         MyJama.dispMatrix(MyJama.OneToTwo(num1,5,3));
-        //MyJama.dispMatrix(MyJama.OneToTwo(array2,3,5));
+       */ //MyJama.dispMatrix(MyJama.OneToTwo(array2,3,5));
 
 
 
@@ -68,17 +68,17 @@ public class JamaTest {
                 solveTranspose(Matrix B)
                           Solve X*A = B, which is also A'*X' = B'
         * */
-   /*     double [][] array = {{10,9.6},{5.9,3.4}};
+      double [][] array = {{10,9.6},{5.9,3.4}};
         double[][] array2 = {{1,2,3},{4,5,6},{7,8,9}};
         double[][] array3;
         Matrix m1 = new Matrix(array);
         Matrix m2 = new Matrix(array2);
-        Matrix m3 = Matrix.random(3,1);*/
+        Matrix m3 = Matrix.random(3,1);
         /*m1 = m1.times(m2);
         array3 = m1.getArray();
         MatrixTest.dispMatrix(array3);*/
 
-      /*  System.out.println(m1.det());
+       System.out.println(m1.det());
         System.out.println(m1.rank());
 
         System.out.println("--------------");
@@ -88,7 +88,6 @@ public class JamaTest {
         }
         System.out.println(m2.rank());
 
-*/
 
 
 /*

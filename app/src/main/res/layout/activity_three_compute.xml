@@ -344,6 +344,7 @@
         android:layout_height="0dp"
         android:layout_weight="3">
         <TextView
+            android:id="@+id/three_clearAll"
             android:background="#6FE9F0F7"
             android:gravity="center"
             android:textSize="30sp"

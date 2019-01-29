@@ -37,7 +37,7 @@ public class Analysis extends AppCompatActivity {
         tv_tran.setText(sb_tran.toString());
         tv_eigV.setText(sb_eigV.toString());
         tv_eigD.setText(sb_eigD.toString());
-        if (r != 0) {
+        if (d != 0) {
             double[] inver = intent.getDoubleArrayExtra("inverse");
             StringBuilder sb_inver = MyJama.output(inver);
             tv_inver.setText(sb_inver.toString());

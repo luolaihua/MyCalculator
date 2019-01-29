@@ -14,13 +14,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
 import java.text.DecimalFormat;
 
 public class ThreeCompute extends BaseActivity implements View.OnClickListener{
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,sovle,sovleTran,tv_analysisA,tv_analysisB;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,sovle,sovleTran,
+            tv_analysisA,tv_analysisB,tv_clearAll;
     private EditText edt_0,edt_1,edt_2,edt_3,edt_4,edt_5,edt_6,edt_7,edt_8,
             edt2_0,edt2_1,edt2_2,edt2_3,edt2_4,edt2_5,edt2_6,edt2_7,edt2_8;
 
@@ -75,6 +77,7 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
         sovleTran = (TextView) findViewById(R.id.sovleTran);
         tv_analysisA = (TextView) findViewById(R.id.three_analysisA);
         tv_analysisB = (TextView) findViewById(R.id.three_analysisB);
+        tv_clearAll = (TextView) findViewById(R.id.three_clearAll);
 
         tv_add.setOnClickListener(this);
         tv_sub.setOnClickListener(this);
@@ -83,6 +86,7 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
         sovleTran.setOnClickListener(this);
         tv_analysisA.setOnClickListener(this);
         tv_analysisB.setOnClickListener(this);
+        tv_clearAll.setOnClickListener(this);
 
         edt2_0 = (EditText) findViewById(R.id.edtInput2_0);
         edt2_1 = (EditText) findViewById(R.id.edtInput2_1);
@@ -217,23 +221,31 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 m[2][2] = Double.parseDouble(edt_8.getText().toString());
 
                 Intent intent = new Intent(ThreeCompute.this, Analysis.class);
+                try {
+                    rank = MyJama.matrixRank(m);
+                    det = MyJama.matrixDet(m);
+                    transpose = MyJama.matrixTranspose(m);
+                    eigD = MyJama.matrixEigD(m);
+                    eigV = MyJama.matrixEigV(m);
+                } catch (Exception e) {
+                    Toast.makeText(ThreeCompute.this,"111 ",Toast.LENGTH_SHORT).show();
+                }
 
-                rank = MyJama.matrixRank(m);
-                det = MyJama.matrixDet(m);
-                transpose = MyJama.matrixTranspose(m);
-                eigD = MyJama.matrixEigD(m);
-                eigV = MyJama.matrixEigV(m);
+                try {
+                    double[] tranOne = MyJama.TwotoOne(transpose);
+                    double[] eigDOne = MyJama.TwotoOne(eigD);
+                    double[] eigVOne = MyJama.TwotoOne(eigV);
 
-                double[] tranOne = MyJama.TwotoOne(transpose);
-                double[] eigDOne = MyJama.TwotoOne(eigD);
-                double[] eigVOne = MyJama.TwotoOne(eigV);
+                    intent.putExtra("rank",rank);
+                    intent.putExtra("det", det);
+                    intent.putExtra("transpose", tranOne);
+                    intent.putExtra("eigD", eigDOne);
+                    intent.putExtra("eigV", eigVOne);
 
+                } catch (Exception e) {
+                    Toast.makeText(ThreeCompute.this,"222 ",Toast.LENGTH_SHORT).show();
 
-                intent.putExtra("rank",rank);
-                intent.putExtra("det", det);
-                intent.putExtra("transpose", tranOne);
-                intent.putExtra("eigD", eigDOne);
-                intent.putExtra("eigV", eigVOne);
+                }
 
                 if(det != 0){
                     inverse = MyJama.matrixInverse(m);
@@ -242,6 +254,65 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 }
 
                 startActivity(intent);break;
+
+            case R.id.three_analysisB:
+                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
+                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
+                n[0][2] = Double.parseDouble(edt2_2.getText().toString());
+                n[1][0] = Double.parseDouble(edt2_3.getText().toString());
+                n[1][1] = Double.parseDouble(edt2_4.getText().toString());
+                n[1][2] = Double.parseDouble(edt2_5.getText().toString());
+                n[2][0] = Double.parseDouble(edt2_6.getText().toString());
+                n[2][1] = Double.parseDouble(edt2_7.getText().toString());
+                n[2][2] = Double.parseDouble(edt2_8.getText().toString());
+
+                Intent intent1 = new Intent(ThreeCompute.this, Analysis.class);
+
+                rank = MyJama.matrixRank(n);
+                det = MyJama.matrixDet(n);
+                transpose = MyJama.matrixTranspose(n);
+                eigD = MyJama.matrixEigD(n);
+                eigV = MyJama.matrixEigV(n);
+
+                double[] tranOne1 = MyJama.TwotoOne(transpose);
+                double[] eigDOne1 = MyJama.TwotoOne(eigD);
+                double[] eigVOne1 = MyJama.TwotoOne(eigV);
+
+
+                intent1.putExtra("rank",rank);
+                intent1.putExtra("det", det);
+                intent1.putExtra("transpose", tranOne1);
+                intent1.putExtra("eigD", eigDOne1);
+                intent1.putExtra("eigV", eigVOne1);
+
+                if(det != 0){
+                    inverse = MyJama.matrixInverse(n);
+                    double[] inverseOne1 = MyJama.TwotoOne(inverse);
+                    intent1.putExtra("inverse", inverseOne1);
+                }
+
+                startActivity(intent1);break;
+
+            case R.id.three_clearAll:
+                edt_0.setText("0");
+                edt_1.setText("0");
+                edt_2.setText("0");
+                edt_3.setText("0");
+                edt_4.setText("0");
+                edt_5.setText("0");
+                edt_6.setText("0");
+                edt_7.setText("0");
+                edt_8.setText("0");
+                edt2_0.setText("0");
+                edt2_1.setText("0");
+                edt2_2.setText("0");
+                edt2_3.setText("0");
+                edt2_4.setText("0");
+                edt2_5.setText("0");
+                edt2_6.setText("0");
+                edt2_7.setText("0");
+                edt2_8.setText("0");
+                tv_result.setText("0  0  0\n0  0  0\n0  0  0");
 
         }
     }

@@ -28,7 +28,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Spinner spinner_row_a, spinner_column_a,spinner_row_b, spinner_column_b;
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_clearAll;
     private EditText et_a,et_b;
     private String input_a,input_b;
     private List<String> row_a = new ArrayList<>();
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         drawerLayout.closeDrawer(GravityCompat.START);
                 }
 
-
                 return true;
             }
         });
@@ -98,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_equal = (TextView) findViewById(R.id.main_tv_equal);
         tv_sovle = (TextView) findViewById(R.id.main_sovle);
         tv_sovleTran = (TextView) findViewById(R.id.main_sovleTran);
+        tv_clearAll = (TextView) findViewById(R.id.main_clearAll);
 
         spinner_row_a = (Spinner) findViewById(R.id.row_a);
         spinner_column_a = (Spinner) findViewById(R.id.column_a);
@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_mult.setOnClickListener(this);
         tv_sovle.setOnClickListener(this);
         tv_sovleTran.setOnClickListener(this);
+        tv_clearAll.setOnClickListener(this);
 
         row_a.add("1行");
         row_a.add("2行");
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinner_column_b.setAdapter(adapter_column_b);
 
 
-
+//下拉栏
         spinner_row_a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -354,6 +355,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+
+        //得出结果
         tv_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -419,6 +422,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
+            case R.id.main_clearAll:
+               // Toast.makeText(MainActivity.this," 99999",Toast.LENGTH_SHORT).show();
+                et_a.setText("");
+                et_b.setText("");
+                tv_result.setText("0  0\n0  0");
 
         }
     }
