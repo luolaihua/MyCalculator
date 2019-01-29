@@ -3,6 +3,7 @@ package com.luo.matrixcaculator;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -56,7 +57,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.menu33);
         }
-    //    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+       NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()){
+                    case R.id.nav_two:
+                        Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
+                        startActivity(intent);break;
+                    case R.id.nav_three:
+                        Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
+                        startActivity(intent1);break;
+                    case R.id.nav_four:
+                        Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
+                        startActivity(intent2);break;
+                    case R.id.nav_help:
+                        Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
+                        startActivity(intent3);break;
+                }
+
+
+                return true;
+            }
+        });
 
 
 
@@ -425,8 +449,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent3);break;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
-
-
         }
         return super.onOptionsItemSelected(item);
     }
