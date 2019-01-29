@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:icon="@drawable/grid_24px2b"
+            android:title="二维矩阵"/>
+        <item
+            android:icon="@drawable/grid_24px_3b"
+            android:title="三维矩阵"/>
+        <item
+            android:icon="@drawable/grid_24px_4b"
+            android:title="四维矩阵"/>
+        <item
+            android:icon="@drawable/panda"
+            android:title="帮助"/>
+
+    </group>
+
+</menu>

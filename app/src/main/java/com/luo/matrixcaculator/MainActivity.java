@@ -3,23 +3,25 @@ package com.luo.matrixcaculator;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-import java.text.DecimalFormat;
+import com.luo.matrixcaculator.robo.ChatMainActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +36,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> column_b = new ArrayList<>();
     private int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;
     private  int flag = 1;
-    private double[][] result,eigD,eigV,inverse,transpose;
-    private double rank,det;
+    private double[][] result;
+
+
+
+    private DrawerLayout drawerLayout;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.menu33);
+        }
+    //    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
+
 
         tv_result = (TextView) findViewById(R.id.main_tv_result);
         tv_add =(TextView) findViewById(R.id.main_tv_add);
@@ -369,69 +389,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
-/*            case R.id.two_analysisA:
-                m[0][0] = Double.parseDouble(edt_0.getText().toString());
-                m[0][1] = Double.parseDouble(edt_1.getText().toString());
-                m[1][0] = Double.parseDouble(edt_2.getText().toString());
-                m[1][1] = Double.parseDouble(edt_3.getText().toString());
-                Intent intent = new Intent(TwoCompute.this, Analysis.class);
 
-                rank = MyJama.matrixRank(m);
-                det = MyJama.matrixDet(m);
-                transpose = MyJama.matrixTranspose(m);
-                eigD = MyJama.matrixEigD(m);
-                eigV = MyJama.matrixEigV(m);
-
-                double[] tranOne = MyJama.TwotoOne(transpose);
-                double[] eigDOne = MyJama.TwotoOne(eigD);
-                double[] eigVOne = MyJama.TwotoOne(eigV);
-
-
-                intent.putExtra("rank",rank);
-                intent.putExtra("det", det);
-                intent.putExtra("transpose", tranOne);
-                intent.putExtra("eigD", eigDOne);
-                intent.putExtra("eigV", eigVOne);
-
-                if(det != 0){
-                    inverse = MyJama.matrixInverse(m);
-                    double[] inverseOne = MyJama.TwotoOne(inverse);
-                    intent.putExtra("inverse", inverseOne);
-                }
-
-                startActivity(intent);break;
-
-            case R.id.two_analysisB:
-                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
-                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
-                n[1][0] = Double.parseDouble(edt2_2.getText().toString());
-                n[1][1] = Double.parseDouble(edt2_3.getText().toString());
-
-                Intent intent1 = new Intent(TwoCompute.this, Analysis.class);
-
-                rank = MyJama.matrixRank(n);
-                det = MyJama.matrixDet(n);
-                transpose = MyJama.matrixTranspose(n);
-                eigD = MyJama.matrixEigD(n);
-                eigV = MyJama.matrixEigV(n);
-
-                double[] tranOne1 = MyJama.TwotoOne(transpose);
-                double[] eigDOne1 = MyJama.TwotoOne(eigD);
-                double[] eigVOne1 = MyJama.TwotoOne(eigV);
-
-
-                intent1.putExtra("rank",rank);
-                intent1.putExtra("det", det);
-                intent1.putExtra("transpose", tranOne1);
-                intent1.putExtra("eigD", eigDOne1);
-                intent1.putExtra("eigV", eigVOne1);
-
-                if(det != 0){
-                    inverse = MyJama.matrixInverse(n);
-                    double[] inverseOne = MyJama.TwotoOne(inverse);
-                    intent1.putExtra("inverse", inverseOne);
-                }
-                startActivity(intent1);break;*/
         }
     }
 
@@ -462,6 +420,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.four:
                 Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
                 startActivity(intent2);break;
+            case R.id.robo:
+                Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
+                startActivity(intent3);break;
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+
 
         }
         return super.onOptionsItemSelected(item);
