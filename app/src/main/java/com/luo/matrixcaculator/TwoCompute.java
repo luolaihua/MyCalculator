@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -55,6 +56,8 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
                     case R.id.nav_help:
                         Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                         startActivity(intent3);finish();break;
+                    case R.id.nav_home:
+                        finish();break;
                 }
 
 

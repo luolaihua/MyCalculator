@@ -72,6 +72,8 @@ public class ChatMainActivity extends BaseActivity implements View.OnClickListen
                     case R.id.nav_help:
                         Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                         startActivity(intent3);finish();break;
+                    case R.id.nav_home:
+                        finish();break;
                 }
 
 
@@ -100,7 +102,9 @@ public class ChatMainActivity extends BaseActivity implements View.OnClickListen
      */
     private void initData() {
         Chat c1 = new Chat("你好，我是罗小炮", Chat.TYPE_RECEIVED);
+        Chat c2 = new Chat("谈恋爱选我，我超甜", Chat.TYPE_RECEIVED);
         list.add(c1);
+        list.add(c2);
     }
 
     /**

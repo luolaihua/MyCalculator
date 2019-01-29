@@ -54,6 +54,8 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                     case R.id.nav_help:
                         Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                         startActivity(intent3);finish();break;
+                    case R.id.nav_home:
+                        finish();break;
                 }
 
 

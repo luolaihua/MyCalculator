@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         drawerLayout.closeDrawer(GravityCompat.START);
                         Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                         startActivity(intent3);break;
+                    case R.id.nav_home:
+                        drawerLayout.closeDrawer(GravityCompat.START);
                 }
 
 
