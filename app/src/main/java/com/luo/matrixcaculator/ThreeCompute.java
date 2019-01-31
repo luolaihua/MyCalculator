@@ -221,17 +221,13 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 m[2][2] = Double.parseDouble(edt_8.getText().toString());
 
                 Intent intent = new Intent(ThreeCompute.this, Analysis.class);
-                try {
                     rank = MyJama.matrixRank(m);
                     det = MyJama.matrixDet(m);
                     transpose = MyJama.matrixTranspose(m);
                     eigD = MyJama.matrixEigD(m);
                     eigV = MyJama.matrixEigV(m);
-                } catch (Exception e) {
-                    Toast.makeText(ThreeCompute.this,"111 ",Toast.LENGTH_SHORT).show();
-                }
 
-                try {
+
                     double[] tranOne = MyJama.TwotoOne(transpose);
                     double[] eigDOne = MyJama.TwotoOne(eigD);
                     double[] eigVOne = MyJama.TwotoOne(eigV);
@@ -241,11 +237,6 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                     intent.putExtra("transpose", tranOne);
                     intent.putExtra("eigD", eigDOne);
                     intent.putExtra("eigV", eigVOne);
-
-                } catch (Exception e) {
-                    Toast.makeText(ThreeCompute.this,"222 ",Toast.LENGTH_SHORT).show();
-
-                }
 
                 if(det != 0){
                     inverse = MyJama.matrixInverse(m);

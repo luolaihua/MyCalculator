@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/two"
-        android:title="二阶矩阵运算"
+        android:title="设置"
         />
     <item
         android:id="@+id/three"
-        android:title="三阶矩阵运算"
+        android:title="关于作者"
 
         />
 
     <item
         android:id="@+id/four"
-        android:title="四阶矩阵运算"
+        android:title="更多功能"
         />
     <item
         android:id="@+id/robo"

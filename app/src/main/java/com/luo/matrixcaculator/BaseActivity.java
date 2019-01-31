@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
@@ -33,14 +34,17 @@ public class BaseActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.two:
-                Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
-                startActivity(intent);finish();break;
+                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
+                startActivity(intent);finish();*/break;
             case R.id.three:
-                Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
-                startActivity(intent1);finish();break;
+                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                /*Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
+                startActivity(intent1);finish();*/break;
             case R.id.four:
-                Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
-                startActivity(intent2);finish();break;
+                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                /*Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
+                startActivity(intent2);finish();*/break;
             case R.id.robo:
                 Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                 startActivity(intent3);finish();break;

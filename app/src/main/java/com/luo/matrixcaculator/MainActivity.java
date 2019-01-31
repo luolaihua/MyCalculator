@@ -427,7 +427,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 et_a.setText("");
                 et_b.setText("");
                 tv_result.setText("0  0\n0  0");
-
         }
     }
 
@@ -450,19 +449,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.two:
-                Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
-                startActivity(intent);break;
+                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                /*Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
+                startActivity(intent);finish();*/break;
             case R.id.three:
-                Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
-                startActivity(intent1);break;
+                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                /*Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
+                startActivity(intent1);finish();*/break;
             case R.id.four:
-                Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
-                startActivity(intent2);break;
+                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                /*Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
+                startActivity(intent2);finish();*/break;
             case R.id.robo:
                 Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
-                startActivity(intent3);break;
+                startActivity(intent3);finish();break;
             case android.R.id.home:
-                drawerLayout.openDrawer(GravityCompat.START);
+                drawerLayout.openDrawer(GravityCompat.START);break;
         }
         return super.onOptionsItemSelected(item);
     }
