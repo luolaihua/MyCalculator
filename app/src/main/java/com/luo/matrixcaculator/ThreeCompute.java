@@ -114,34 +114,44 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
 
-                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
-                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
-                n[0][2] = Double.parseDouble(edt2_2.getText().toString());
-                n[1][0] = Double.parseDouble(edt2_3.getText().toString());
-                n[1][1] = Double.parseDouble(edt2_4.getText().toString());
-                n[1][2] = Double.parseDouble(edt2_5.getText().toString());
-                n[2][0] = Double.parseDouble(edt2_6.getText().toString());
-                n[2][1] = Double.parseDouble(edt2_7.getText().toString());
-                n[2][2] = Double.parseDouble(edt2_8.getText().toString());
+                try{
+                    n[0][0] = Double.parseDouble(edt2_0.getText().toString());
+                    n[0][1] = Double.parseDouble(edt2_1.getText().toString());
+                    n[0][2] = Double.parseDouble(edt2_2.getText().toString());
+                    n[1][0] = Double.parseDouble(edt2_3.getText().toString());
+                    n[1][1] = Double.parseDouble(edt2_4.getText().toString());
+                    n[1][2] = Double.parseDouble(edt2_5.getText().toString());
+                    n[2][0] = Double.parseDouble(edt2_6.getText().toString());
+                    n[2][1] = Double.parseDouble(edt2_7.getText().toString());
+                    n[2][2] = Double.parseDouble(edt2_8.getText().toString());
 
-                m[0][0] = Double.parseDouble(edt_0.getText().toString());
-                m[0][1] = Double.parseDouble(edt_1.getText().toString());
-                m[0][2] = Double.parseDouble(edt_2.getText().toString());
-                m[1][0] = Double.parseDouble(edt_3.getText().toString());
-                m[1][1] = Double.parseDouble(edt_4.getText().toString());
-                m[1][2] = Double.parseDouble(edt_5.getText().toString());
-                m[2][0] = Double.parseDouble(edt_6.getText().toString());
-                m[2][1] = Double.parseDouble(edt_7.getText().toString());
-                m[2][2] = Double.parseDouble(edt_8.getText().toString());
+                    m[0][0] = Double.parseDouble(edt_0.getText().toString());
+                    m[0][1] = Double.parseDouble(edt_1.getText().toString());
+                    m[0][2] = Double.parseDouble(edt_2.getText().toString());
+                    m[1][0] = Double.parseDouble(edt_3.getText().toString());
+                    m[1][1] = Double.parseDouble(edt_4.getText().toString());
+                    m[1][2] = Double.parseDouble(edt_5.getText().toString());
+                    m[2][0] = Double.parseDouble(edt_6.getText().toString());
+                    m[2][1] = Double.parseDouble(edt_7.getText().toString());
+                    m[2][2] = Double.parseDouble(edt_8.getText().toString());
 
 
-                try {
+                    result = MyJama.getResult(m, n, flag);
+
+                    tv_result.setText(MyJama.output(result).toString());
+                }catch (Exception e) {
+                    Toast.makeText(ThreeCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+
+               /*
                     //计算结果；
                     result = MyJama.getResult(m, n, flag);
 
-                } catch (Exception e) {
-                    Toast.makeText(ThreeCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
-                }
+                tv_result.setText(MyJama.output(result).toString());*/
                 /*switch (flag){
                     case 1:
                         result = MyJama.matrixAdd(m,n);break;
@@ -157,7 +167,7 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 }*/
 
 
-                tv_result.setText(MyJama.output(result).toString());
+
                 /*tv_result.setText(
 
                         String.format("%.2f", result[0][0])+"    "+
@@ -216,17 +226,20 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 sovleTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
             case R.id.three_analysisA:
-                m[0][0] = Double.parseDouble(edt_0.getText().toString());
-                m[0][1] = Double.parseDouble(edt_1.getText().toString());
-                m[0][2] = Double.parseDouble(edt_2.getText().toString());
-                m[1][0] = Double.parseDouble(edt_3.getText().toString());
-                m[1][1] = Double.parseDouble(edt_4.getText().toString());
-                m[1][2] = Double.parseDouble(edt_5.getText().toString());
-                m[2][0] = Double.parseDouble(edt_6.getText().toString());
-                m[2][1] = Double.parseDouble(edt_7.getText().toString());
-                m[2][2] = Double.parseDouble(edt_8.getText().toString());
 
-                Intent intent = new Intent(ThreeCompute.this, Analysis.class);
+
+                try{
+                    m[0][0] = Double.parseDouble(edt_0.getText().toString());
+                    m[0][1] = Double.parseDouble(edt_1.getText().toString());
+                    m[0][2] = Double.parseDouble(edt_2.getText().toString());
+                    m[1][0] = Double.parseDouble(edt_3.getText().toString());
+                    m[1][1] = Double.parseDouble(edt_4.getText().toString());
+                    m[1][2] = Double.parseDouble(edt_5.getText().toString());
+                    m[2][0] = Double.parseDouble(edt_6.getText().toString());
+                    m[2][1] = Double.parseDouble(edt_7.getText().toString());
+                    m[2][2] = Double.parseDouble(edt_8.getText().toString());
+
+                    Intent intent = new Intent(ThreeCompute.this, Analysis.class);
                     rank = MyJama.matrixRank(m);
                     det = MyJama.matrixDet(m);
                     transpose = MyJama.matrixTranspose(m);
@@ -244,51 +257,63 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                     intent.putExtra("eigD", eigDOne);
                     intent.putExtra("eigV", eigVOne);
 
-                if(det != 0){
-                    inverse = MyJama.matrixInverse(m);
-                    double[] inverseOne = MyJama.TwotoOne(inverse);
-                    intent.putExtra("inverse", inverseOne);
+                    if(det != 0){
+                        inverse = MyJama.matrixInverse(m);
+                        double[] inverseOne = MyJama.TwotoOne(inverse);
+                        intent.putExtra("inverse", inverseOne);
+                    }
+
+                    startActivity(intent);break;
+                }catch (Exception e) {
+                    Toast.makeText(ThreeCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                    break;
                 }
 
-                startActivity(intent);break;
 
             case R.id.three_analysisB:
-                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
-                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
-                n[0][2] = Double.parseDouble(edt2_2.getText().toString());
-                n[1][0] = Double.parseDouble(edt2_3.getText().toString());
-                n[1][1] = Double.parseDouble(edt2_4.getText().toString());
-                n[1][2] = Double.parseDouble(edt2_5.getText().toString());
-                n[2][0] = Double.parseDouble(edt2_6.getText().toString());
-                n[2][1] = Double.parseDouble(edt2_7.getText().toString());
-                n[2][2] = Double.parseDouble(edt2_8.getText().toString());
-
-                Intent intent1 = new Intent(ThreeCompute.this, Analysis.class);
-
-                rank = MyJama.matrixRank(n);
-                det = MyJama.matrixDet(n);
-                transpose = MyJama.matrixTranspose(n);
-                eigD = MyJama.matrixEigD(n);
-                eigV = MyJama.matrixEigV(n);
-
-                double[] tranOne1 = MyJama.TwotoOne(transpose);
-                double[] eigDOne1 = MyJama.TwotoOne(eigD);
-                double[] eigVOne1 = MyJama.TwotoOne(eigV);
 
 
-                intent1.putExtra("rank",rank);
-                intent1.putExtra("det", det);
-                intent1.putExtra("transpose", tranOne1);
-                intent1.putExtra("eigD", eigDOne1);
-                intent1.putExtra("eigV", eigVOne1);
+                try{
+                    n[0][0] = Double.parseDouble(edt2_0.getText().toString());
+                    n[0][1] = Double.parseDouble(edt2_1.getText().toString());
+                    n[0][2] = Double.parseDouble(edt2_2.getText().toString());
+                    n[1][0] = Double.parseDouble(edt2_3.getText().toString());
+                    n[1][1] = Double.parseDouble(edt2_4.getText().toString());
+                    n[1][2] = Double.parseDouble(edt2_5.getText().toString());
+                    n[2][0] = Double.parseDouble(edt2_6.getText().toString());
+                    n[2][1] = Double.parseDouble(edt2_7.getText().toString());
+                    n[2][2] = Double.parseDouble(edt2_8.getText().toString());
 
-                if(det != 0){
-                    inverse = MyJama.matrixInverse(n);
-                    double[] inverseOne1 = MyJama.TwotoOne(inverse);
-                    intent1.putExtra("inverse", inverseOne1);
+                    Intent intent1 = new Intent(ThreeCompute.this, Analysis.class);
+
+                    rank = MyJama.matrixRank(n);
+                    det = MyJama.matrixDet(n);
+                    transpose = MyJama.matrixTranspose(n);
+                    eigD = MyJama.matrixEigD(n);
+                    eigV = MyJama.matrixEigV(n);
+
+                    double[] tranOne1 = MyJama.TwotoOne(transpose);
+                    double[] eigDOne1 = MyJama.TwotoOne(eigD);
+                    double[] eigVOne1 = MyJama.TwotoOne(eigV);
+
+
+                    intent1.putExtra("rank",rank);
+                    intent1.putExtra("det", det);
+                    intent1.putExtra("transpose", tranOne1);
+                    intent1.putExtra("eigD", eigDOne1);
+                    intent1.putExtra("eigV", eigVOne1);
+
+                    if(det != 0){
+                        inverse = MyJama.matrixInverse(n);
+                        double[] inverseOne1 = MyJama.TwotoOne(inverse);
+                        intent1.putExtra("inverse", inverseOne1);
+                    }
+
+                    startActivity(intent1);break;
+                }catch (Exception e) {
+                    Toast.makeText(ThreeCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                    break;
                 }
-
-                startActivity(intent1);break;
 
             case R.id.three_clearAll:
                 edt_0.setText("0");

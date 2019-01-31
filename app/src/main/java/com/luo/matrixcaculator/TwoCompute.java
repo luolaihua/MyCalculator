@@ -106,24 +106,31 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
             @Override
             public void onClick(View v) {
 
-                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
-                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
-                n[1][0] = Double.parseDouble(edt2_2.getText().toString());
-                n[1][1] = Double.parseDouble(edt2_3.getText().toString());
-
-
-                m[0][0] = Double.parseDouble(edt_0.getText().toString());
-                m[0][1] = Double.parseDouble(edt_1.getText().toString());
-                m[1][0] = Double.parseDouble(edt_2.getText().toString());
-                m[1][1] = Double.parseDouble(edt_3.getText().toString());
-
                 try {
-                    //计算结果；
+                    n[0][0] = Double.parseDouble(edt2_0.getText().toString());
+                    n[0][1] = Double.parseDouble(edt2_1.getText().toString());
+                    n[1][0] = Double.parseDouble(edt2_2.getText().toString());
+                    n[1][1] = Double.parseDouble(edt2_3.getText().toString());
+
+
+                    m[0][0] = Double.parseDouble(edt_0.getText().toString());
+                    m[0][1] = Double.parseDouble(edt_1.getText().toString());
+                    m[1][0] = Double.parseDouble(edt_2.getText().toString());
+                    m[1][1] = Double.parseDouble(edt_3.getText().toString());
+
                     result = MyJama.getResult(m, n, flag);
 
+                    tv_result.setText(MyJama.output(result).toString());
                 } catch (Exception e) {
                     Toast.makeText(TwoCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
                 }
+
+
+
+
+                    //计算结果；
+                   // result = MyJama.getResult(m, n, flag);
+
 
                /* switch (flag){
                     case 1:
@@ -134,7 +141,7 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
                         result = MyJama.matrixMult(m,n);break;
                 }*/
 
-                tv_result.setText(MyJama.output(result).toString());
+               // tv_result.setText(MyJama.output(result).toString());
 
                /* tv_result.setText(
 
@@ -190,69 +197,83 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
                 flag = 5;break;
             case R.id.two_analysisA:
-                m[0][0] = Double.parseDouble(edt_0.getText().toString());
-                m[0][1] = Double.parseDouble(edt_1.getText().toString());
-                m[1][0] = Double.parseDouble(edt_2.getText().toString());
-                m[1][1] = Double.parseDouble(edt_3.getText().toString());
-                Intent intent = new Intent(TwoCompute.this, Analysis.class);
 
-                rank = MyJama.matrixRank(m);
-                det = MyJama.matrixDet(m);
-                transpose = MyJama.matrixTranspose(m);
-                eigD = MyJama.matrixEigD(m);
-                eigV = MyJama.matrixEigV(m);
+                try{
+                    m[0][0] = Double.parseDouble(edt_0.getText().toString());
+                    m[0][1] = Double.parseDouble(edt_1.getText().toString());
+                    m[1][0] = Double.parseDouble(edt_2.getText().toString());
+                    m[1][1] = Double.parseDouble(edt_3.getText().toString());
+                    Intent intent = new Intent(TwoCompute.this, Analysis.class);
 
-                double[] tranOne = MyJama.TwotoOne(transpose);
-                double[] eigDOne = MyJama.TwotoOne(eigD);
-                double[] eigVOne = MyJama.TwotoOne(eigV);
+                    rank = MyJama.matrixRank(m);
+                    det = MyJama.matrixDet(m);
+                    transpose = MyJama.matrixTranspose(m);
+                    eigD = MyJama.matrixEigD(m);
+                    eigV = MyJama.matrixEigV(m);
+
+                    double[] tranOne = MyJama.TwotoOne(transpose);
+                    double[] eigDOne = MyJama.TwotoOne(eigD);
+                    double[] eigVOne = MyJama.TwotoOne(eigV);
 
 
-                intent.putExtra("rank",rank);
-                intent.putExtra("det", det);
-                intent.putExtra("transpose", tranOne);
-                intent.putExtra("eigD", eigDOne);
-                intent.putExtra("eigV", eigVOne);
+                    intent.putExtra("rank",rank);
+                    intent.putExtra("det", det);
+                    intent.putExtra("transpose", tranOne);
+                    intent.putExtra("eigD", eigDOne);
+                    intent.putExtra("eigV", eigVOne);
 
-                if(det != 0){
-                    inverse = MyJama.matrixInverse(m);
-                    double[] inverseOne = MyJama.TwotoOne(inverse);
-                    intent.putExtra("inverse", inverseOne);
+                    if(det != 0){
+                        inverse = MyJama.matrixInverse(m);
+                        double[] inverseOne = MyJama.TwotoOne(inverse);
+                        intent.putExtra("inverse", inverseOne);
+                    }
+
+                    startActivity(intent); break;
+                } catch (Exception e) {
+                    Toast.makeText(TwoCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                    break;
                 }
 
-                startActivity(intent);break;
 
             case R.id.two_analysisB:
-                n[0][0] = Double.parseDouble(edt2_0.getText().toString());
-                n[0][1] = Double.parseDouble(edt2_1.getText().toString());
-                n[1][0] = Double.parseDouble(edt2_2.getText().toString());
-                n[1][1] = Double.parseDouble(edt2_3.getText().toString());
 
-                Intent intent1 = new Intent(TwoCompute.this, Analysis.class);
+                try{
+                    n[0][0] = Double.parseDouble(edt2_0.getText().toString());
+                    n[0][1] = Double.parseDouble(edt2_1.getText().toString());
+                    n[1][0] = Double.parseDouble(edt2_2.getText().toString());
+                    n[1][1] = Double.parseDouble(edt2_3.getText().toString());
 
-                rank = MyJama.matrixRank(n);
-                det = MyJama.matrixDet(n);
-                transpose = MyJama.matrixTranspose(n);
-                eigD = MyJama.matrixEigD(n);
-                eigV = MyJama.matrixEigV(n);
+                    Intent intent1 = new Intent(TwoCompute.this, Analysis.class);
 
-                double[] tranOne1 = MyJama.TwotoOne(transpose);
-                double[] eigDOne1 = MyJama.TwotoOne(eigD);
-                double[] eigVOne1 = MyJama.TwotoOne(eigV);
+                    rank = MyJama.matrixRank(n);
+                    det = MyJama.matrixDet(n);
+                    transpose = MyJama.matrixTranspose(n);
+                    eigD = MyJama.matrixEigD(n);
+                    eigV = MyJama.matrixEigV(n);
+
+                    double[] tranOne1 = MyJama.TwotoOne(transpose);
+                    double[] eigDOne1 = MyJama.TwotoOne(eigD);
+                    double[] eigVOne1 = MyJama.TwotoOne(eigV);
 
 
-                intent1.putExtra("rank",rank);
-                intent1.putExtra("det", det);
-                intent1.putExtra("transpose", tranOne1);
-                intent1.putExtra("eigD", eigDOne1);
-                intent1.putExtra("eigV", eigVOne1);
+                    intent1.putExtra("rank",rank);
+                    intent1.putExtra("det", det);
+                    intent1.putExtra("transpose", tranOne1);
+                    intent1.putExtra("eigD", eigDOne1);
+                    intent1.putExtra("eigV", eigVOne1);
 
-                if(det != 0){
-                    inverse = MyJama.matrixInverse(n);
-                    double[] inverseOne = MyJama.TwotoOne(inverse);
-                    intent1.putExtra("inverse", inverseOne);
+                    if(det != 0){
+                        inverse = MyJama.matrixInverse(n);
+                        double[] inverseOne = MyJama.TwotoOne(inverse);
+                        intent1.putExtra("inverse", inverseOne);
+                    }
+
+                    startActivity(intent1);break;
+
+                }catch (Exception e) {
+                    Toast.makeText(TwoCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                    break;
                 }
-
-                startActivity(intent1);break;
             case R.id.two_clearAll:
                 edt_0.setText("0");
                 edt_1.setText("0");

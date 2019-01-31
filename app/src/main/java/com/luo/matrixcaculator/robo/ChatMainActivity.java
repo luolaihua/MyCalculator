@@ -16,6 +16,7 @@ import android.widget.EditText;
 
 import com.luo.matrixcaculator.BaseActivity;
 import com.luo.matrixcaculator.FourCompute;
+import com.luo.matrixcaculator.MainActivity;
 import com.luo.matrixcaculator.MyApplication;
 import com.luo.matrixcaculator.R;
 import com.luo.matrixcaculator.ThreeCompute;
@@ -73,7 +74,8 @@ public class ChatMainActivity extends BaseActivity implements View.OnClickListen
                         Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                         startActivity(intent3);finish();break;
                     case R.id.nav_home:
-                        finish();break;
+                        Intent intent4 = new Intent(MyApplication.getContext(), MainActivity.class);
+                        startActivity(intent4);finish();break;
                 }
 
 
