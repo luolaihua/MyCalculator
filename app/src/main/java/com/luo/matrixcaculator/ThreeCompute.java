@@ -135,7 +135,13 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 m[2][2] = Double.parseDouble(edt_8.getText().toString());
 
 
-                result = MyJama.getResult(m, n, flag);
+                try {
+                    //计算结果；
+                    result = MyJama.getResult(m, n, flag);
+
+                } catch (Exception e) {
+                    Toast.makeText(ThreeCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                }
                 /*switch (flag){
                     case 1:
                         result = MyJama.matrixAdd(m,n);break;
@@ -151,8 +157,8 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                 }*/
 
 
-
-                tv_result.setText(
+                tv_result.setText(MyJama.output(result).toString());
+                /*tv_result.setText(
 
                         String.format("%.2f", result[0][0])+"    "+
                         String.format("%.2f", result[0][1])+"    "+
@@ -164,7 +170,7 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
                         String.format("%.2f", result[2][1])+"    "+
                         String.format("%.2f", result[2][2])+"    "
                 );
-
+*/
 
 
             }

@@ -37,9 +37,8 @@
                     android:textSize="30sp" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <Spinner
@@ -146,9 +145,8 @@
                     android:textSize="30sp" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
                     android:orientation="vertical">
 
                     <Spinner
@@ -208,7 +206,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="9"
                     android:gravity="center"
-                    android:text="0  0\n0  0"
+                    android:text="0,0,0,0\n0,0,0,0\n0,0,0,0\n0,0,0,0\n"
                     android:textIsSelectable="true" />
 
 

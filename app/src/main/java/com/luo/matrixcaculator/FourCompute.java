@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
@@ -169,7 +170,13 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
 
 
 
-                result = MyJama.getResult(m, n, flag);
+                try {
+                    //计算结果；
+                    result = MyJama.getResult(m, n, flag);
+
+                } catch (Exception e) {
+                    Toast.makeText(FourCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                }
                /* switch (flag){
                     case 1:
                         result = MyJama.matrixAdd(m,n);break;
@@ -185,7 +192,8 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
 
 
 
-                tv_result.setText(
+                tv_result.setText(MyJama.output(result).toString());
+                /*tv_result.setText(
 
                                 String.format("%.2f", result[0][0])+"    "+
                                 String.format("%.2f", result[0][1])+"    "+
@@ -202,9 +210,9 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                                 String.format("%.2f", result[3][0])+"    "+
                                 String.format("%.2f", result[3][1])+"    "+
                                 String.format("%.2f", result[3][2])+"    "+
-                                String.format("%.2f", result[3][3])+"    "
+                                String.format("%.2f", result[3][3])+"    ");*/
 
-                );
+
 
 
 

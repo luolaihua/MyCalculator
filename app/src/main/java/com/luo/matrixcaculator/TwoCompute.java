@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
@@ -116,9 +117,13 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
                 m[1][0] = Double.parseDouble(edt_2.getText().toString());
                 m[1][1] = Double.parseDouble(edt_3.getText().toString());
 
+                try {
+                    //计算结果；
+                    result = MyJama.getResult(m, n, flag);
 
-                //计算结果；
-                result = MyJama.getResult(m, n, flag);
+                } catch (Exception e) {
+                    Toast.makeText(TwoCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
+                }
 
                /* switch (flag){
                     case 1:
@@ -129,15 +134,15 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
                         result = MyJama.matrixMult(m,n);break;
                 }*/
 
+                tv_result.setText(MyJama.output(result).toString());
 
-
-                tv_result.setText(
+               /* tv_result.setText(
 
                     String.format("%.2f", result[0][0])+"    "+
                     String.format("%.2f", result[0][1])+"    \n"+
                     String.format("%.2f", result[1][0])+"    "+
                     String.format("%.2f", result[1][1])+"    "
-                );
+                );*/
 
 
 

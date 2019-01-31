@@ -505,7 +505,7 @@
             android:id="@+id/four_tv_result"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="6"
+            android:layout_weight="8"
             android:gravity="center"
             android:text="0  0  0  0\n0  0  0  0\n0  0  0  0\n0  0  0  0\n"
             android:textSize="20sp" />
