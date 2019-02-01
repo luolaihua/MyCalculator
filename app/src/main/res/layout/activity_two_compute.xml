@@ -273,7 +273,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@drawable/bizhi"
+        android:background="@drawable/bg3"
         android:layout_width="match_parent"
         android:layout_gravity="start"
         android:layout_height="match_parent">

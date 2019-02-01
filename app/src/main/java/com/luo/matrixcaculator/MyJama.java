@@ -114,28 +114,7 @@ public class MyJama {
         }
         return result;
     }
-    public static StringBuilder output(double[] c) {
-        StringBuilder sb = new StringBuilder();
-        int row = (int) Math.sqrt(c.length);
-        for(int i = 0; i < c.length; i++){
-            if((i+1) % row == 0){
-                sb.append(String.format("%.3f", c[i])+"\n");
-            }else{
-                sb.append(String.format("%.3f", c[i])+",  ");
-            }
-        }
-        return sb;
-    }
-    public static StringBuilder output(double[][] cc) {
-        StringBuilder sb = new StringBuilder();
-        for(int i=0;i<cc.length;i++){
-            for(int j=0;j<cc[i].length;j++){
-                sb.append(String.format("%.3f", cc[i][j])+"   ");
-            }
-            sb.append("\n");
-        }
-        return sb;
-    }
+
     public static double[][] OneToTwo(double[] one,int row,int column) {
         double[][] m = new double[row][column];
         int index=0;
@@ -158,6 +137,54 @@ public class MyJama {
         return num;
     }
 
+
+
+    public static StringBuilder output(double[] c) {
+        StringBuilder sb = new StringBuilder();
+        int row = (int) Math.sqrt(c.length);
+        for(int i = 0; i < c.length; i++){
+            if((i+1) % row == 0){
+                sb.append(String.format("%.3f", c[i])+"\n");
+            }else{
+                sb.append(String.format("%.3f", c[i])+",  ");
+            }
+        }
+        return sb;
+    }
+    public static StringBuilder output(double[][] cc) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<cc.length;i++){
+            for(int j=0;j<cc[i].length;j++){
+                sb.append(String.format("%.2f", cc[i][j])+"   ");
+            }
+            sb.append("\n");
+        }
+        return sb;
+    }
+
+
+    public static StringBuilder output(double[] c,int n) {
+        StringBuilder sb = new StringBuilder();
+        int row = (int) Math.sqrt(c.length);
+        for(int i = 0; i < c.length; i++){
+            if((i+1) % row == 0){
+                sb.append(String.format("%."+n+"f", c[i])+"\n");
+            }else{
+                sb.append(String.format("%."+n+"f", c[i])+",  ");
+            }
+        }
+        return sb;
+    }
+    public static StringBuilder output(double[][] cc,int n) {
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<cc.length;i++){
+            for(int j=0;j<cc[i].length;j++){
+                sb.append(String.format("%."+n+"f", cc[i][j])+"   ");
+            }
+            sb.append("\n");
+        }
+        return sb;
+    }
 
 
 }

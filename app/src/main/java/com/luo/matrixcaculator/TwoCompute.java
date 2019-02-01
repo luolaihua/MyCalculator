@@ -1,6 +1,7 @@
 package com.luo.matrixcaculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -29,9 +30,15 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
     private double[][] n = new double[2][2];
     private double[][] result,eigD,eigV,inverse,transpose;
     private double rank,det;
+    private static int num = 3;
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
+        num = preferences.getInt("num",0);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +127,7 @@ public class TwoCompute extends BaseActivity implements View.OnClickListener{
 
                     result = MyJama.getResult(m, n, flag);
 
-                    tv_result.setText(MyJama.output(result).toString());
+                    tv_result.setText(MyJama.output(result,num).toString());
                 } catch (Exception e) {
                     Toast.makeText(TwoCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
                 }

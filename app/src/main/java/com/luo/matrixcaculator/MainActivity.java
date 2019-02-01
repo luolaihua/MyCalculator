@@ -2,6 +2,7 @@ package com.luo.matrixcaculator;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -28,7 +29,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Spinner spinner_row_a, spinner_column_a,spinner_row_b, spinner_column_b;
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_clearAll;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_clearAll,testA;
     private EditText et_a,et_b;
     private String input_a,input_b;
     private List<String> row_a = new ArrayList<>();
@@ -38,10 +39,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;
     private  int flag = 1;
     private double[][] result;
+    private static int num = 3;
 
 
 
     private DrawerLayout drawerLayout;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
+        num = preferences.getInt("num",0);
+    }
 
 
 
@@ -98,14 +108,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_sovle = (TextView) findViewById(R.id.main_sovle);
         tv_sovleTran = (TextView) findViewById(R.id.main_sovleTran);
         tv_clearAll = (TextView) findViewById(R.id.main_clearAll);
+        testA = (TextView) findViewById(R.id.testA);
 
-        spinner_row_a = (Spinner) findViewById(R.id.row_a);
-        spinner_column_a = (Spinner) findViewById(R.id.column_a);
-        et_a = (EditText) findViewById(R.id.et_a);
-        spinner_row_b = (Spinner) findViewById(R.id.row_b);
-        spinner_column_b = (Spinner) findViewById(R.id.column_b);
+
+testA.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+
+        Toast.makeText(MainActivity.this,"当前小数点保留 "+num+" 位",Toast.LENGTH_SHORT).show();
+    }
+});
+
+
+
+
         et_b = (EditText) findViewById(R.id.et_b);
-
+        et_a = (EditText) findViewById(R.id.et_a);
 
 
         tv_add.setOnClickListener(this);
@@ -115,6 +133,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_sovleTran.setOnClickListener(this);
         tv_clearAll.setOnClickListener(this);
 
+
+
+        //设置下拉栏属性
+        spinner_row_a = (Spinner) findViewById(R.id.row_a);
+        spinner_column_a = (Spinner) findViewById(R.id.column_a);
+        spinner_row_b = (Spinner) findViewById(R.id.row_b);
+        spinner_column_b = (Spinner) findViewById(R.id.column_b);
         row_a.add("1行");
         row_a.add("2行");
         row_a.add("3行");
@@ -158,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         spinner_column_b.setAdapter(adapter_column_b);
 
 
-//下拉栏
+        //下拉栏点击事件
         spinner_row_a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -369,7 +394,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                    double[][] m = MyJama.OneToTwo(a, num_row_a, num_column_a);
                    double[][] n = MyJama.OneToTwo(b, num_row_b, num_column_b);
                    result = MyJama.getResult(m, n, flag);
-                   tv_result.setText(MyJama.output(result).toString());
+                   tv_result.setText(MyJama.output(result,num).toString());
                }catch (Exception e){
                    e.printStackTrace();
                    Toast.makeText(MainActivity.this,"输入错误！", Toast.LENGTH_SHORT).show();
@@ -449,22 +474,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.setting:
+                //Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MyApplication.getContext(),Setting.class);
+                startActivity(intent);break;
+           /* case R.id.author:
                 Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(MyApplication.getContext(),TwoCompute.class);
-                startActivity(intent);finish();*/break;
-            case R.id.author:
-                Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
-                /*Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
-                startActivity(intent1);finish();*/break;
+                *//*Intent intent1 = new Intent(MyApplication.getContext(),ThreeCompute.class);
+                startActivity(intent1);finish();*//*break;
             case R.id.more:
                 Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
-                /*Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
-                startActivity(intent2);finish();*/break;
+                *//*Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
+                startActivity(intent2);finish();*//*break;*/
             case R.id.robo:
                 Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
                 startActivity(intent3);break;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);break;
+
         }
         return super.onOptionsItemSelected(item);
     }

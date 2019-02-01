@@ -1,6 +1,7 @@
 package com.luo.matrixcaculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
@@ -32,6 +33,14 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
     private double[][] n = new double[3][3];
     private double[][] result,eigD,eigV,inverse,transpose;
     private double rank,det;
+    private static int num = 3;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
+        num = preferences.getInt("num",0);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +147,7 @@ public class ThreeCompute extends BaseActivity implements View.OnClickListener{
 
                     result = MyJama.getResult(m, n, flag);
 
-                    tv_result.setText(MyJama.output(result).toString());
+                    tv_result.setText(MyJama.output(result,num).toString());
                 }catch (Exception e) {
                     Toast.makeText(ThreeCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
                 }

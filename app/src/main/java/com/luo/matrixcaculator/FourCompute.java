@@ -1,6 +1,7 @@
 package com.luo.matrixcaculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -29,8 +30,13 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
     private double[][] n = new double[4][4];
     private double[][] result,eigD,eigV,inverse,transpose;
     private double rank,det;
-
-
+    private static int num = 3;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
+        num = preferences.getInt("num",0);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -172,7 +178,7 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
 
                     //计算结果；
                     result = MyJama.getResult(m, n, flag);
-                    tv_result.setText(MyJama.output(result).toString());
+                    tv_result.setText(MyJama.output(result,num).toString());
 
                 }catch (Exception e) {
                     Toast.makeText(FourCompute.this,"输入有误...",Toast.LENGTH_SHORT).show();
@@ -372,7 +378,7 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
                     break;
                 }
 
-            case R.id.three_clearAll:
+            case R.id.four_clearAll:
                 edt_0.setText("0");
                 edt_1.setText("0");
                 edt_2.setText("0");
