@@ -129,7 +129,7 @@ public class MyJama {
 
     public static double[] StrToNum(String a) {
 
-        String[] b = a.replaceAll("\n",",").split(",");
+        String[] b = a.replaceAll("\n",",").split(",| ");
         double [] num = new double[b.length];
         for (int i = 0; i < b.length; i++) {
             num[i] = Double.parseDouble(b[i]);

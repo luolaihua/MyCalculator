@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> row_b = new ArrayList<>();
     private List<String> column_b = new ArrayList<>();
     private int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;
-    private  int flag = 1;
+    private  int flag = 0;
     private double[][] result;
     private static int num = 3;
 
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DrawerLayout drawerLayout;
 
-
+//获取小数点保留位数
     @Override
     protected void onResume() {
         super.onResume();
@@ -181,7 +181,6 @@ testA.setOnClickListener(new View.OnClickListener() {
         spinner_row_b.setAdapter(adapter_row_b);
         adapter_column_b.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_column_b.setAdapter(adapter_column_b);
-
 
         //下拉栏点击事件
         spinner_row_a.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -385,20 +384,24 @@ testA.setOnClickListener(new View.OnClickListener() {
         tv_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (flag == 0) {
+                    Toast.makeText(MainActivity.this,"还没有点运算符号呢！", Toast.LENGTH_SHORT).show();
+                }else {
+                    input_a = et_a.getText().toString();
+                    input_b = et_b.getText().toString();
+                    try {
+                        double[] a = MyJama.StrToNum(input_a);
+                        double[] b = MyJama.StrToNum(input_b);
+                        double[][] m = MyJama.OneToTwo(a, num_row_a, num_column_a);
+                        double[][] n = MyJama.OneToTwo(b, num_row_b, num_column_b);
+                        result = MyJama.getResult(m, n, flag);
+                        tv_result.setText(MyJama.output(result,num).toString());
+                    }catch (Exception e){
+                        e.printStackTrace();
+                        Toast.makeText(MainActivity.this,"输入错误！", Toast.LENGTH_SHORT).show();
+                    }
+                }
 
-               input_a = et_a.getText().toString();
-               input_b = et_b.getText().toString();
-               try {
-                   double[] a = MyJama.StrToNum(input_a);
-                   double[] b = MyJama.StrToNum(input_b);
-                   double[][] m = MyJama.OneToTwo(a, num_row_a, num_column_a);
-                   double[][] n = MyJama.OneToTwo(b, num_row_b, num_column_b);
-                   result = MyJama.getResult(m, n, flag);
-                   tv_result.setText(MyJama.output(result,num).toString());
-               }catch (Exception e){
-                   e.printStackTrace();
-                   Toast.makeText(MainActivity.this,"输入错误！", Toast.LENGTH_SHORT).show();
-               }
 
             }
         });
@@ -413,7 +416,7 @@ testA.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.main_tv_add:
-                tv_add.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                tv_add.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -421,7 +424,7 @@ testA.setOnClickListener(new View.OnClickListener() {
                 flag = 1;break;
             case R.id.main_tv_sub:
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sub.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                tv_sub.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -429,7 +432,7 @@ testA.setOnClickListener(new View.OnClickListener() {
             case R.id.main_tv_mult:
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_mult.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                tv_mult.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 3;break;
@@ -437,7 +440,7 @@ testA.setOnClickListener(new View.OnClickListener() {
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                tv_sovle.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 4;break;
             case R.id.main_sovleTran:
@@ -445,10 +448,22 @@ testA.setOnClickListener(new View.OnClickListener() {
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#B0D6F5"));
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));
                 flag = 5;break;
             case R.id.main_clearAll:
                // Toast.makeText(MainActivity.this," 99999",Toast.LENGTH_SHORT).show();
+                flag = 0;
+                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+
+                spinner_column_a.setSelection(0);
+                spinner_column_b.setSelection(0);
+                spinner_row_a.setSelection(0);
+                spinner_row_b.setSelection(0);
+
                 et_a.setText("");
                 et_b.setText("");
                 tv_result.setText("0  0\n0  0");

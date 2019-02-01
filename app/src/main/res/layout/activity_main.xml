@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
-    android:background="@drawable/cat"
+    android:background="@drawable/cat6_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -220,7 +220,7 @@
 
 <LinearLayout
     android:orientation="vertical"
-    android:background="@drawable/bg3"
+    android:background="@drawable/cat8_bg"
     android:layout_width="match_parent"
     android:layout_gravity="start"
     android:layout_height="match_parent">

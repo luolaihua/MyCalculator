@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg2"
+    android:background="@drawable/cat2_bg"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".robo.ChatMainActivity">
@@ -48,7 +48,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:background="@drawable/bg3"
+        android:background="@drawable/cat8_bg"
         android:layout_width="match_parent"
         android:layout_gravity="start"
         android:layout_height="match_parent">
