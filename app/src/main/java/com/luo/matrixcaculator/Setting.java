@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -13,9 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Setting extends AppCompatActivity {
-private Spinner spinner;
+//private Spinner spinner;
 private static int num = 3;
-    private List<String> list_num = new ArrayList<>();
+private RatingBar ratingBar;
+    //private List<String> list_num = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,23 @@ private static int num = 3;
 
 
 
+        ratingBar = (RatingBar) findViewById(R.id.ratingbar);
+        ratingBar.setRating(num);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                SharedPreferences.Editor editor = getSharedPreferences("data_num",MODE_PRIVATE).edit();
+                editor.putInt("num", (int)rating);
+                editor.apply();
+                Toast.makeText(Setting.this,"当前小数点保留："+(int)rating+" 位",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+/*
         spinner = (Spinner) findViewById(R.id.num);
 
         list_num.add("取整");
@@ -57,7 +76,7 @@ private static int num = 3;
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
     }
 }
