@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -17,11 +18,14 @@ public class Setting extends AppCompatActivity {
 //private Spinner spinner;
 private static int num = 3;
 private RatingBar ratingBar;
+private TextView tv_num;
     //private List<String> list_num = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        tv_num = (TextView) findViewById(R.id.tv_num);
 
 
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
@@ -37,7 +41,8 @@ private RatingBar ratingBar;
                 SharedPreferences.Editor editor = getSharedPreferences("data_num",MODE_PRIVATE).edit();
                 editor.putInt("num", (int)rating);
                 editor.apply();
-                Toast.makeText(Setting.this,"当前小数点保留："+(int)rating+" 位",Toast.LENGTH_SHORT).show();
+                tv_num.setText(""+(int)rating);
+                //Toast.makeText(Setting.this,"当前小数点保留："+(int)rating+" 位",Toast.LENGTH_SHORT).show();
             }
         });
 
