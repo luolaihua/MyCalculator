@@ -7,7 +7,7 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/pig"
+        android:icon="@drawable/pig1"
         android:label="@string/app_name"
         android:roundIcon="@drawable/g4"
         android:supportsRtl="true"
@@ -36,6 +36,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:name=".robo.ChatMainActivity"
             android:label="罗小炮" />
     </application>
