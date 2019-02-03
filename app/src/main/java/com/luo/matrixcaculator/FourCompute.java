@@ -30,10 +30,11 @@ public class FourCompute extends BaseActivity implements View.OnClickListener{
     private double[][] n = new double[4][4];
     private double[][] result,eigD,eigV,inverse,transpose;
     private double rank,det;
-    private static int num = 3;
+    private static int num = 3;//小数点保留位数
     @Override
     protected void onResume() {
         super.onResume();
+        //当前活动在栈顶就刷新小数点保留位数
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
         num = preferences.getInt("num",0);
     }

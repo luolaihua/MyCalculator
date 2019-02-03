@@ -5,7 +5,113 @@ import Jama.Matrix;
 public class JamaTest {
 
     public static void main(String[] args) {
-        String a= "1,2,3,4\n5,6,7,8\n9,10,11,12";//34
+        int row = 3,column = 2;
+        int id_r[] = new int[row];
+        int id_c[] = new int[column];
+
+        for (int i = 0; i < row; i++) {
+            id_r[i] = i;
+        }
+        for (int i = 0; i < column; i++) {
+            id_c[i] = i;
+        }
+
+        double id[][] = new double[5][5];
+        id[0][0] = R.id.a_00;
+        id[0][1] = R.id.a_01;
+        id[0][2] = R.id.a_02;
+        id[0][3] = R.id.a_03;
+        id[0][4] = R.id.a_04;
+        id[1][0] = R.id.a_10;
+        id[1][1] = R.id.a_11;
+        id[1][2] = R.id.a_12;
+        id[1][3] = R.id.a_13;
+        id[1][4] = R.id.a_14;
+        id[2][0] = R.id.a_20;
+        id[2][1] = R.id.a_21;
+        id[2][2] = R.id.a_22;
+        id[2][3] = R.id.a_23;
+        id[2][4] = R.id.a_24;
+        id[3][0] = R.id.a_30;
+        id[3][1] = R.id.a_31;
+        id[3][2] = R.id.a_32;
+        id[3][3] = R.id.a_33;
+        id[3][4] = R.id.a_34;
+        id[4][0] = R.id.a_40;
+        id[4][1] = R.id.a_41;
+        id[4][2] = R.id.a_42;
+        id[4][3] = R.id.a_43;
+        id[4][4] = R.id.a_44;
+
+        MyJama.dispMatrix(MyJama.FindId(id,row,column));
+
+/*
+        Matrix m1 = new Matrix(id);
+        m1.print(4,2);
+
+        Matrix test = m1.getMatrix(id_r, id_c);
+
+        test.print(4,2);
+
+        double [][] m = test.getArray();
+        int[][] n = new int[row][column];
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                n[i][j] = (int) m[i][j];
+            }
+
+        }
+        MyJama.dispMatrix(n);*/
+        //int idInt[][] = (int[][])test.getArray();
+        double id2[][] = new double[5][5];
+        id2[0][0] = R.id.b_00;
+        id2[0][1] = R.id.b_01;
+        id2[0][2] = R.id.b_02;
+        id2[0][3] = R.id.b_03;
+        id2[0][4] = R.id.b_04;
+        id2[1][0] = R.id.b_10;
+        id2[1][1] = R.id.b_11;
+        id2[1][2] = R.id.b_12;
+        id2[1][3] = R.id.b_13;
+        id2[1][4] = R.id.b_14;
+        id2[2][0] = R.id.b_20;
+        id2[2][1] = R.id.b_21;
+        id2[2][2] = R.id.b_22;
+        id2[2][3] = R.id.b_23;
+        id2[2][4] = R.id.b_24;
+        id2[3][0] = R.id.b_30;
+        id2[3][1] = R.id.b_31;
+        id2[3][2] = R.id.b_32;
+        id2[3][3] = R.id.b_33;
+        id2[3][4] = R.id.b_34;
+        id2[4][0] = R.id.b_40;
+        id2[4][1] = R.id.b_41;
+        id2[4][2] = R.id.b_42;
+        id2[4][3] = R.id.b_43;
+        id2[4][4] = R.id.b_44;
+        //Matrix m2 = new Matrix(id2);
+       // m2.print(4,2);
+/*
+
+        double [][] array = {{10,9.6},{5.9,3.4},{5.9,3.4}};//32
+        double[][] array2 = {{1,2,3,4,5}
+                            , {4,5,6,7,8}
+                            , {4,5,6,9,10}
+                            , {4,5,6,11,12}
+                            , {4,5,6,13,14}};//23
+        double[][] array3;
+        int[] aa = {0,1,2};
+        int[] bb = {0,1,2};
+        Matrix m1 = new Matrix(array);
+        Matrix m2 = new Matrix(array2);
+        Matrix m3 = m2.getMatrix(aa, bb);
+        m3.print(4,2);
+*/
+
+
+
+       /* String a= "1,2,3,4\n5,6,7,8\n9,10,11,12";//34
         String b= "1,2,3\n5,6,7\n9,10,11\n9,10,13";
         double[] aa = MyJama.StrToNum(a);
         double[] bb = MyJama.StrToNum(b);
@@ -14,7 +120,7 @@ public class JamaTest {
         double[][] result = MyJama.getResult(m, n, 3);
 
         Matrix m1 = new Matrix(result);
-        m1.print(4,2);
+        m1.print(4,2);*/
        // tv_result.setText(MyJama.output(result,num).toString());
 
        /* String a= "1,2,3,4\n5,6,7,8\n9,10,11,12";

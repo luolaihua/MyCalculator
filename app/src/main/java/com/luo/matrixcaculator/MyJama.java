@@ -1,5 +1,8 @@
 package com.luo.matrixcaculator;
 
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
 import Jama.Matrix;
 
 public class MyJama {
@@ -10,6 +13,14 @@ public class MyJama {
         for (int i = 0; i < m.length; i++) {
             for (int j = 0; j < m[i].length; j++) {
                 System.out.printf("%-15.2f",m[i][j]);
+            }
+            System.out.println();
+        }
+    }
+    public static void dispMatrix(int[][] m) {
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                System.out.printf("%-15d",m[i][j]);
             }
             System.out.println();
         }
@@ -114,7 +125,6 @@ public class MyJama {
         }
         return result;
     }
-
     public static double[][] OneToTwo(double[] one,int row,int column) {
         double[][] m = new double[row][column];
         int index=0;
@@ -126,7 +136,6 @@ public class MyJama {
         }
         return m;
     }
-
     public static double[] StrToNum(String a) {
 
         String[] b = a.replaceAll("\n",",").split(",| ");
@@ -136,9 +145,6 @@ public class MyJama {
         }
         return num;
     }
-
-
-
     public static StringBuilder output(double[] c) {
         StringBuilder sb = new StringBuilder();
         int row = (int) Math.sqrt(c.length);
@@ -161,8 +167,6 @@ public class MyJama {
         }
         return sb;
     }
-
-
     public static StringBuilder output(double[] c,int n) {
         StringBuilder sb = new StringBuilder();
         int row = (int) Math.sqrt(c.length);
@@ -186,5 +190,54 @@ public class MyJama {
         return sb;
     }
 
+
+    public static int[][] FindId(double[][] id,int row,int column) {
+        //获取行列的索引
+        int id_r[] = new int[row];
+        int id_c[] = new int[column];
+        for (int i = 0; i < row; i++) {
+            id_r[i] = i;
+        }
+        for (int i = 0; i < column; i++) {
+            id_c[i] = i;
+        }
+
+
+        Matrix m1 = new Matrix(id);
+       // m1.print(4,2);
+        Matrix test = m1.getMatrix(id_r, id_c);
+
+       // test.print(4,2);
+
+        double [][] m = test.getArray();
+        int[][] n = new int[row][column];
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                n[i][j] = (int) m[i][j];
+            }
+        }
+       // MyJama.dispMatrix(n);
+        return n;
+    }
+
+    //功能与FindId差不多，裁剪数据。
+    public static double[][] ProData(double[][] data,int row,int column) {
+        //获取行列的索引
+        int id_r[] = new int[row];
+        int id_c[] = new int[column];
+        for (int i = 0; i < row; i++) {
+            id_r[i] = i;
+        }
+        for (int i = 0; i < column; i++) {
+            id_c[i] = i;
+        }
+
+
+        Matrix m1 = new Matrix(data);
+        // m1.print(4,2);
+
+        return  m1.getMatrix(id_r, id_c).getArray();
+    }
 
 }

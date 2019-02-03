@@ -7,12 +7,13 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
-        android:icon="@drawable/pig1"
+        android:icon="@drawable/tutut"
         android:label="@string/app_name"
         android:roundIcon="@drawable/g4"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Setting"></activity>
+        <activity android:name=".Main2"></activity>
+        <activity android:name=".Setting" />
         <activity android:name=".CounterActivity" />
         <activity
             android:name=".Analysis"
@@ -28,7 +29,7 @@
             android:label="三阶矩阵计算" />
         <activity
             android:name=".MainActivity"
-            android:label="MatrixCalculator">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,9 +37,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:windowSoftInputMode="adjustPan|stateHidden"
             android:name=".robo.ChatMainActivity"
-            android:label="罗小炮" />
+            android:label="罗小炮"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

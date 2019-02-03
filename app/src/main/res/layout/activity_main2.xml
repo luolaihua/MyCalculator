@@ -802,14 +802,14 @@
         </LinearLayout>
     </FrameLayout>
 
-<LinearLayout
-    android:orientation="vertical"
-    android:background="@drawable/cat8_bg"
-    android:layout_width="match_parent"
-    android:layout_gravity="start"
-    android:layout_height="match_parent">
-    <include layout="@layout/leftview"/>
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@drawable/cat8_bg"
+        android:layout_width="match_parent"
+        android:layout_gravity="start"
+        android:layout_height="match_parent">
+        <include layout="@layout/leftview"/>
+    </LinearLayout>
 
 
 </android.support.v4.widget.DrawerLayout>
