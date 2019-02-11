@@ -1,13 +1,22 @@
 package com.luo.matrixcaculator;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 public class Analysis extends AppCompatActivity {
     private TextView tv_rank,tv_det,tv_tran,tv_eigD,tv_eigV,tv_inver;
+    private static int num = 3;//小数点保留位数
 
+    //获取小数点保留位数
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
+        num = preferences.getInt("num",2);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,9 +37,9 @@ public class Analysis extends AppCompatActivity {
         double[] eigV = intent.getDoubleArrayExtra("eigV");
         double[] eigD = intent.getDoubleArrayExtra("eigD");
 
-        StringBuilder sb_tran = MyJama.output(tran);
-        StringBuilder sb_eigV = MyJama.output(eigV);
-        StringBuilder sb_eigD = MyJama.output(eigD);
+        StringBuilder sb_tran = MyJama.output(tran,num);
+        StringBuilder sb_eigV = MyJama.output(eigV,num);
+        StringBuilder sb_eigD = MyJama.output(eigD,num);
 
         tv_rank.setText(r+"");
         tv_det.setText(d+"");
@@ -39,7 +48,7 @@ public class Analysis extends AppCompatActivity {
         tv_eigD.setText(sb_eigD.toString());
         if (d != 0) {
             double[] inver = intent.getDoubleArrayExtra("inverse");
-            StringBuilder sb_inver = MyJama.output(inver);
+            StringBuilder sb_inver = MyJama.output(inver,num);
             tv_inver.setText(sb_inver.toString());
         }else {
             tv_inver.setText("不可逆");

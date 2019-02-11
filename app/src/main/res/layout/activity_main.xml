@@ -30,11 +30,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/testA"
+                    android:id="@+id/main_A"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#6FE2EDF5"
+                    android:background="@layout/selector"
                     android:gravity="center"
                     android:text="A"
                     android:textSize="30sp" />
@@ -467,10 +467,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/main_B"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="#6FE2EDF5"
+                    android:background="@layout/selector"
                     android:gravity="center"
                     android:text="B"
                     android:textSize="30sp" />
@@ -813,7 +814,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:background="#6FE2EDF5"
+                android:background="@layout/selector"
                 android:gravity="center"
                 android:text="="
                 android:textSize="36sp" />

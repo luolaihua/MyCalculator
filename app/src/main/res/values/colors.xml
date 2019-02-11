@@ -3,4 +3,5 @@
     <color name="colorPrimary">#BDD4E4</color>
     <color name="colorPrimaryDark">#BDD4E4</color>
     <color name="colorAccent">#ECAFAA</color>
+    <color name="press">#86C0EE</color>
 </resources>

@@ -32,8 +32,9 @@ import Jama.Matrix;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private Spinner spinner_row_a, spinner_column_a,spinner_row_b, spinner_column_b;
-    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_clearAll,testA ;
-    private EditText et_a,et_b,b0,b1;
+    private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_clearAll,
+            tv_A ,tv_B ,tv_analysisA,tv_analysisB;
+    private EditText et_a,et_b;
     private String input_a,input_b;
     private List<String> row_a = new ArrayList<>();
     private List<String> column_a = new ArrayList<>();
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> column_b = new ArrayList<>();
     private static int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;//a b行列的数量
     private  int flag = 0;//加减乘除的flag
-    private double[][] result;// 结果
+    private double[][] result,m,n,eigD,eigV,inverse,transpose;// 结果
+    private double rank,det;
     private static int num = 3;//小数点保留位数
     private LinearLayout linear_a1,linear_a2,linear_a3,linear_a4,linear_a5;
     private LinearLayout linear_b1,linear_b2,linear_b3,linear_b4,linear_b5;
@@ -68,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
+        num = preferences.getInt("num",2);
 
         id_a[0][0] = R.id.a_00;
         id_a[0][1] = R.id.a_01;
@@ -184,15 +188,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_sovle = (TextView) findViewById(R.id.main_sovle);
         tv_sovleTran = (TextView) findViewById(R.id.main_sovleTran);
         tv_clearAll = (TextView) findViewById(R.id.main_clearAll);
-        testA = (TextView) findViewById(R.id.testA);
-
-
-testA.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-       Toast.makeText(MainActivity.this,"当前小数点保留 "+num+" 位",Toast.LENGTH_SHORT).show();
-    }
-});
+        tv_A = (TextView) findViewById(R.id.main_A);
+        tv_B = (TextView) findViewById(R.id.main_B);
+        tv_analysisA = (TextView) findViewById(R.id.main_analysisA);
+        tv_analysisB = (TextView) findViewById(R.id.main_analysisB);
 
 
 
@@ -207,6 +206,10 @@ testA.setOnClickListener(new View.OnClickListener() {
         tv_sovle.setOnClickListener(this);
         tv_sovleTran.setOnClickListener(this);
         tv_clearAll.setOnClickListener(this);
+        tv_analysisA.setOnClickListener(this);
+        tv_analysisB.setOnClickListener(this);
+        tv_B.setOnClickListener(this);
+        tv_A.setOnClickListener(this);
 
 
 
@@ -725,7 +728,9 @@ testA.setOnClickListener(new View.OnClickListener() {
 //-------------------------------------------------------------------------
 
 
-        //得出结果
+/**
+ *  //得出结果
+ */
         tv_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -738,7 +743,7 @@ testA.setOnClickListener(new View.OnClickListener() {
 
 
                     //把数据都放入data_a，b中,五行五列,此时还有好多0呢！！！需要处理！
-                    EditText et_a ,et_b;
+                   // EditText et_a ,et_b;
                     for (int i = 0; i < 5; i++) {
                         for (int j = 0; j < 5; j++) {
                             et_a = (EditText) findViewById((int)id_a[i][j]);
@@ -774,6 +779,25 @@ testA.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.main_A:
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 5; j++) {
+                        if (i == j) {
+                            et_a = (EditText) findViewById((int)id_a[i][j]);
+                            et_a.setText("1");
+                        }
+                    }
+                }break;
+            case R.id.main_B:
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 5; j++) {
+                        if (i == j) {
+                            et_b = (EditText) findViewById((int)id_b[i][j]);
+                            et_b.setText("1");
+                        }
+                    }
+                }break;
+
             case R.id.main_tv_add:
                 tv_add.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -809,6 +833,114 @@ testA.setOnClickListener(new View.OnClickListener() {
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));
                 flag = 5;break;
+            case R.id.main_analysisA:
+
+                //把数据都放入data_a，b中,五行五列,此时还有好多0呢！！！需要处理！
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 5; j++) {
+                        et_a = (EditText) findViewById((int)id_a[i][j]);
+                       // et_b = (EditText) findViewById((int)id_b[i][j]);
+                        data_a[i][j] = Double.parseDouble(et_a.getText().toString());
+                        //data_b[i][j] = Double.parseDouble(et_b.getText().toString());
+                    }
+                }
+                try {
+                    //先处理数据ProData，切割数据
+                     m = MyJama.ProData(data_a,num_row_a,num_column_a);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this,"输入错误！1", Toast.LENGTH_SHORT).show();
+                }
+
+                try{
+
+                    Intent intent = new Intent(MainActivity.this, Analysis.class);
+
+                    rank = MyJama.matrixRank(m);
+                    det = MyJama.matrixDet(m);
+                    transpose = MyJama.matrixTranspose(m);
+                    eigD = MyJama.matrixEigD(m);
+                    eigV = MyJama.matrixEigV(m);
+
+                    //二维变一维
+                    double[] tranOne = MyJama.TwotoOne(transpose);
+                    double[] eigDOne = MyJama.TwotoOne(eigD);
+                    double[] eigVOne = MyJama.TwotoOne(eigV);
+
+
+                    intent.putExtra("rank",rank);
+                    intent.putExtra("det", det);
+                    intent.putExtra("transpose", tranOne);
+                    intent.putExtra("eigD", eigDOne);
+                    intent.putExtra("eigV", eigVOne);
+
+                    if(det != 0){
+                        inverse = MyJama.matrixInverse(m);
+                        double[] inverseOne = MyJama.TwotoOne(inverse);
+                        intent.putExtra("inverse", inverseOne);
+                    }
+
+                    startActivity(intent);
+                    break;
+                }catch (Exception e) {
+                    Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
+                    break;
+                }
+
+            case R.id.main_analysisB:
+//把数据都放入data_a，b中,五行五列,此时还有好多0呢！！！需要处理！
+                //EditText et_a;
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 5; j++) {
+                       // et_a = (EditText) findViewById((int)id_a[i][j]);
+                        et_b = (EditText) findViewById((int)id_b[i][j]);
+                        //data_a[i][j] = Double.parseDouble(et_a.getText().toString());
+                        data_b[i][j] = Double.parseDouble(et_b.getText().toString());
+                    }
+                }
+                try {
+                    //先处理数据ProData，切割数据
+                    n = MyJama.ProData(data_b,num_row_b,num_column_b);
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this,"输入错误！1", Toast.LENGTH_SHORT).show();
+                }
+                try{
+
+
+                    Intent intent1 = new Intent(MainActivity.this, Analysis.class);
+
+                    rank = MyJama.matrixRank(n);
+                    det = MyJama.matrixDet(n);
+                    transpose = MyJama.matrixTranspose(n);
+                    eigD = MyJama.matrixEigD(n);
+                    eigV = MyJama.matrixEigV(n);
+
+                    double[] tranOne1 = MyJama.TwotoOne(transpose);
+                    double[] eigDOne1 = MyJama.TwotoOne(eigD);
+                    double[] eigVOne1 = MyJama.TwotoOne(eigV);
+
+
+                    intent1.putExtra("rank",rank);
+                    intent1.putExtra("det", det);
+                    intent1.putExtra("transpose", tranOne1);
+                    intent1.putExtra("eigD", eigDOne1);
+                    intent1.putExtra("eigV", eigVOne1);
+
+                    if(det != 0){
+                        inverse = MyJama.matrixInverse(n);
+                        double[] inverseOne = MyJama.TwotoOne(inverse);
+                        intent1.putExtra("inverse", inverseOne);
+                    }
+
+                    startActivity(intent1);
+                    break;
+                }catch (Exception e) {
+                    Toast.makeText(MainActivity.this,"输入有误..2.",Toast.LENGTH_SHORT).show();
+                    break;
+                }
             case R.id.main_clearAll:
                // Toast.makeText(MainActivity.this," 99999",Toast.LENGTH_SHORT).show();
                 flag = 0;
@@ -823,7 +955,7 @@ testA.setOnClickListener(new View.OnClickListener() {
                 spinner_row_a.setSelection(0);
                 spinner_row_b.setSelection(0);
 
-                EditText et_a ,et_b;
+                EditText et_b;
                 for (int i = 0; i < 5; i++) {
                     for (int j = 0; j < 5; j++) {
                         et_a = (EditText) findViewById((int)id_a[i][j]);
