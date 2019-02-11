@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> column_a = new ArrayList<>();
     private List<String> row_b = new ArrayList<>();
     private List<String> column_b = new ArrayList<>();
-    private static int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;
-    private  int flag = 0;
-    private double[][] result;
-    private static int num = 3;
+    private static int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;//a b行列的数量
+    private  int flag = 0;//加减乘除的flag
+    private double[][] result;// 结果
+    private static int num = 3;//小数点保留位数
     private LinearLayout linear_a1,linear_a2,linear_a3,linear_a4,linear_a5;
     private LinearLayout linear_b1,linear_b2,linear_b3,linear_b4,linear_b5;
     static double id_a[][] = new double[5][5];
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
-        num = preferences.getInt("num",0);
+        num = preferences.getInt("num",2);
     }
 
 
@@ -190,67 +190,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 testA.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-       // Toast.makeText(MainActivity.this,"当前小数点保留 "+num+" 位",Toast.LENGTH_SHORT).show();
-        int row = 3;
-        int column = 2;
-        int[][] m = MyJama.FindId(id_a, row, column);
-        EditText test;
-        switch (column){
-            case 1:
-                linear_a1.setVisibility(View.VISIBLE);
-                linear_a2.setVisibility(View.GONE);
-                linear_a3.setVisibility(View.GONE);
-                linear_a4.setVisibility(View.GONE);
-                linear_a5.setVisibility(View.GONE);
-                break;
-            case 2:
-                linear_a1.setVisibility(View.VISIBLE);
-                linear_a2.setVisibility(View.VISIBLE);
-                linear_a3.setVisibility(View.GONE);
-                linear_a4.setVisibility(View.GONE);
-                linear_a5.setVisibility(View.GONE);
-                break;
-            case 3:
-                linear_a1.setVisibility(View.VISIBLE);
-                linear_a2.setVisibility(View.VISIBLE);
-                linear_a3.setVisibility(View.VISIBLE);
-                linear_a4.setVisibility(View.GONE);
-                linear_a5.setVisibility(View.GONE);
-                break;
-            case 4:
-                linear_a1.setVisibility(View.VISIBLE);
-                linear_a2.setVisibility(View.VISIBLE);
-                linear_a3.setVisibility(View.VISIBLE);
-                linear_a4.setVisibility(View.VISIBLE);
-                linear_a5.setVisibility(View.GONE);
-                break;
-            case 5:
-                linear_a1.setVisibility(View.VISIBLE);
-                linear_a2.setVisibility(View.VISIBLE);
-                linear_a3.setVisibility(View.VISIBLE);
-                linear_a4.setVisibility(View.VISIBLE);
-                linear_a5.setVisibility(View.VISIBLE);
-                break;
-
-
-        }
-        //让控件全部GONE---初始化
-        for (int i = 0; i < id_a.length; i++) {
-            for (int j = 0; j < id_a[i].length; j++) {
-                test = (EditText) findViewById((int)id_a[i][j]);
-                test.setVisibility(View.GONE);
-            }
-        }
-
-        //让需要的控件VISIBLE
-        for (int i = 0; i < m.length; i++) {
-            for (int j = 0; j < m[i].length; j++) {
-                test = (EditText) findViewById(m[i][j]);
-                test.setVisibility(View.VISIBLE);
-            }
-        }
-
-
+       Toast.makeText(MainActivity.this,"当前小数点保留 "+num+" 位",Toast.LENGTH_SHORT).show();
     }
 });
 
@@ -797,7 +737,7 @@ testA.setOnClickListener(new View.OnClickListener() {
 
 
 
-                    //把数据都放入data_ab中,此时还有好多0呢！！！需要处理！
+                    //把数据都放入data_a，b中,五行五列,此时还有好多0呢！！！需要处理！
                     EditText et_a ,et_b;
                     for (int i = 0; i < 5; i++) {
                         for (int j = 0; j < 5; j++) {
@@ -809,7 +749,7 @@ testA.setOnClickListener(new View.OnClickListener() {
                     }
 
                     try {
-                       //先处理数据ProData
+                       //先处理数据ProData，切割数据
                         //计算结果；
                         result = MyJama.getResult(MyJama.ProData(data_a,num_row_a,num_column_a), MyJama.ProData(data_b,num_row_b,num_column_b), flag);
                         tv_result.setText(MyJama.output(result,num).toString());

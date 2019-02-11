@@ -63,7 +63,6 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/linear_a_1"
                         android:layout_gravity="center"
                         android:orientation="vertical"
@@ -71,7 +70,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_00"
                             android:gravity="center"
                             android:text="0"
@@ -82,7 +81,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_10"
                             android:gravity="center"
                             android:text="0"
@@ -93,7 +92,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_20"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -103,7 +102,7 @@
                             android:inputType="numberDecimal"
                             android:text="0" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_30"
                             android:gravity="center"
                             android:text="0"
@@ -112,26 +111,27 @@
                             android:layout_weight="1"
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
+
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_40"
-                            android:gravity="center"
-                            android:text="0"
-                            android:background="@null"
                             android:layout_width="match_parent"
-                            android:layout_weight="1"
                             android:layout_height="0dp"
-                            android:inputType="numberDecimal" />
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:gravity="center"
+                            android:inputType="numberDecimal"
+                            android:text="0" />
                     </LinearLayout>
                     <LinearLayout
-                        android:visibility="gone"
+                        android:selectAllOnFocus="true"
                         android:id="@+id/linear_a_2"
                         android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_01"
                             android:gravity="center"
                             android:text="0"
@@ -142,7 +142,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_11"
                             android:text="0"
@@ -152,7 +152,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_21"
                             android:gravity="center"
                             android:text="0"
@@ -162,7 +162,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_31"
                             android:gravity="center"
                             android:text="0"
@@ -172,7 +172,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_41"
                             android:gravity="center"
                             android:text="0"
@@ -183,14 +183,14 @@
                             android:inputType="numberDecimal" />
                     </LinearLayout>
                     <LinearLayout
-                        android:visibility="gone"
+                        android:selectAllOnFocus="true"
                         android:id="@+id/linear_a_3"
                         android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_02"
                             android:gravity="center"
                             android:text="0"
@@ -201,7 +201,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_12"
                             android:text="0"
@@ -211,7 +211,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_22"
                             android:text="0"
@@ -221,7 +221,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_32"
                             android:gravity="center"
                             android:text="0"
@@ -231,7 +231,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_42"
                             android:gravity="center"
                             android:text="0"
@@ -242,14 +242,14 @@
                             android:inputType="numberDecimal" />
                     </LinearLayout>
                     <LinearLayout
-                        android:visibility="gone"
+
                         android:id="@+id/linear_a_4"
                         android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_03"
                             android:gravity="center"
                             android:text="0"
@@ -260,7 +260,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_13"
                             android:text="0"
@@ -270,7 +270,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_23"
                             android:text="0"
@@ -280,7 +280,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_33"
                             android:gravity="center"
                             android:text="0"
@@ -290,7 +290,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_43"
                             android:gravity="center"
                             android:text="0"
@@ -301,14 +301,14 @@
                             android:inputType="numberDecimal" />
                     </LinearLayout>
                     <LinearLayout
-                        android:visibility="gone"
+
                         android:id="@+id/linear_a_5"
                         android:orientation="vertical"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_04"
                             android:gravity="center"
                             android:text="0"
@@ -319,7 +319,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_14"
                             android:text="0"
@@ -329,7 +329,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/a_24"
                             android:text="0"
@@ -339,7 +339,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_34"
                             android:gravity="center"
                             android:text="0"
@@ -349,7 +349,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
-                            android:visibility="gone"
+                            android:selectAllOnFocus="true"
                             android:id="@+id/a_44"
                             android:gravity="center"
                             android:text="0"
@@ -485,6 +485,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_00"
                             android:gravity="center"
                             android:text="0"
@@ -495,6 +496,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_10"
                             android:gravity="center"
                             android:text="0"
@@ -505,6 +507,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_20"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -514,6 +517,7 @@
                             android:inputType="numberDecimal"
                             android:text="0" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_30"
                             android:gravity="center"
                             android:text="0"
@@ -523,6 +527,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_40"
                             android:gravity="center"
                             android:text="0"
@@ -539,6 +544,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_01"
                             android:gravity="center"
                             android:text="0"
@@ -549,6 +555,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_11"
                             android:text="0"
@@ -558,6 +565,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_21"
                             android:gravity="center"
                             android:text="0"
@@ -567,6 +575,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_31"
                             android:gravity="center"
                             android:text="0"
@@ -576,6 +585,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_41"
                             android:gravity="center"
                             android:text="0"
@@ -592,6 +602,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_02"
                             android:gravity="center"
                             android:text="0"
@@ -602,6 +613,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_12"
                             android:text="0"
@@ -611,6 +623,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_22"
                             android:text="0"
@@ -620,6 +633,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_32"
                             android:gravity="center"
                             android:text="0"
@@ -629,6 +643,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_42"
                             android:gravity="center"
                             android:text="0"
@@ -645,6 +660,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_03"
                             android:gravity="center"
                             android:text="0"
@@ -655,6 +671,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_13"
                             android:text="0"
@@ -664,6 +681,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_23"
                             android:text="0"
@@ -673,6 +691,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_33"
                             android:gravity="center"
                             android:text="0"
@@ -682,6 +701,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_43"
                             android:gravity="center"
                             android:text="0"
@@ -698,6 +718,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2">
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_04"
                             android:gravity="center"
                             android:text="0"
@@ -708,6 +729,7 @@
                             android:inputType="numberDecimal" />
 
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_14"
                             android:text="0"
@@ -717,6 +739,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:gravity="center"
                             android:id="@+id/b_24"
                             android:text="0"
@@ -726,6 +749,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_34"
                             android:gravity="center"
                             android:text="0"
@@ -735,6 +759,7 @@
                             android:layout_height="0dp"
                             android:inputType="numberDecimal" />
                         <EditText
+                            android:selectAllOnFocus="true"
                             android:id="@+id/b_44"
                             android:gravity="center"
                             android:text="0"

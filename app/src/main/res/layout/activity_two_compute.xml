@@ -37,6 +37,7 @@
 
 
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput_0"
                 android:text="0"
@@ -46,6 +47,7 @@
                 android:layout_height="0dp"
                 android:inputType="numberDecimal" />
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput_2"
                 android:text="0"
@@ -64,6 +66,7 @@
 
 
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput_1"
                 android:text="0"
@@ -73,6 +76,7 @@
                 android:layout_height="0dp"
                 android:inputType="numberDecimal" />
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput_3"
                 android:text="0"
@@ -186,6 +190,7 @@
             android:layout_weight="2">
 
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput2_0"
                 android:text="0"
@@ -195,6 +200,7 @@
                 android:layout_height="0dp"
                 android:inputType="numberDecimal" />
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput2_2"
                 android:text="0"
@@ -211,6 +217,7 @@
             android:layout_weight="2">
 
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput2_1"
                 android:text="0"
@@ -220,6 +227,7 @@
                 android:layout_height="0dp"
                 android:inputType="numberDecimal" />
             <EditText
+                android:selectAllOnFocus="true"
                 android:gravity="center"
                 android:id="@+id/two_edtInput2_3"
                 android:text="0"
