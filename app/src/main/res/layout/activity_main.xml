@@ -364,7 +364,7 @@
                 <EditText
                     android:visibility="gone"
                     android:background="@null"
-                    android:id="@+id/et_a"
+                    android:id="@+id/input_a"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
@@ -799,7 +799,7 @@
                 <EditText
                     android:visibility="gone"
                     android:background="@null"
-                    android:id="@+id/et_b"
+                    android:id="@+id/input_b"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"

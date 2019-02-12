@@ -189,8 +189,6 @@ public class MyJama {
         }
         return sb;
     }
-
-
     public static int[][] FindId(double[][] id,int row,int column) {
         //获取行列的索引
         int id_r[] = new int[row];
@@ -220,7 +218,6 @@ public class MyJama {
        // MyJama.dispMatrix(n);
         return n;
     }
-
     //功能与FindId差不多，裁剪数据。
     public static double[][] ProData(double[][] data,int row,int column) {
         //获取行列的索引
@@ -240,4 +237,28 @@ public class MyJama {
         return  m1.getMatrix(id_r, id_c).getArray();
     }
 
+
+    public static StringBuilder UnitMatrix(int row, int column) {
+        StringBuilder m = new StringBuilder();
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < column; j++) {
+                if (i == j ) {
+                    if (j != column-1){
+                        m.append("1,");
+                    }else {
+                        m.append("1");
+                    }
+                }else {
+                    if (j != column-1){
+                        m.append("0,");
+                    }else {
+                        m.append("0");
+                    }
+                }
+            }
+            m.append("\n");
+        }
+
+        return m;
+    }
 }

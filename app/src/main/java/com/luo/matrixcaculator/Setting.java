@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +18,12 @@ import java.util.List;
 
 public class Setting extends AppCompatActivity {
 //private Spinner spinner;
-private static int num = 3;
+private static int num = 3,isture = 0;
+private static boolean which_mode = false;
 private RatingBar ratingBar;
+private Switch aSwitch;
 private TextView tv_num;
+private SharedPreferences.Editor editor;
     //private List<String> list_num = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +31,30 @@ private TextView tv_num;
         setContentView(R.layout.activity_setting);
 
         tv_num = (TextView) findViewById(R.id.tv_num);
+        aSwitch = (Switch) findViewById(R.id.sw);
 
 
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
         num = preferences.getInt("num",2);
+        which_mode = preferences.getBoolean("isChecked", false);
 
+        aSwitch.setChecked(which_mode);
+
+
+
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                editor = getSharedPreferences("data_num",MODE_PRIVATE).edit();
+                if(isChecked){
+                    Toast.makeText(Setting.this,"手动输入模式开",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Setting.this,"手动输入模式关",Toast.LENGTH_SHORT).show();
+                }
+                editor.putBoolean("isChecked",isChecked);
+                editor.apply();
+            }
+        });
 
 
         ratingBar = (RatingBar) findViewById(R.id.ratingbar);
@@ -38,7 +62,7 @@ private TextView tv_num;
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                SharedPreferences.Editor editor = getSharedPreferences("data_num",MODE_PRIVATE).edit();
+                editor = getSharedPreferences("data_num",MODE_PRIVATE).edit();
                 editor.putInt("num", (int)rating);
                 editor.apply();
                 tv_num.setText(""+(int)rating);
