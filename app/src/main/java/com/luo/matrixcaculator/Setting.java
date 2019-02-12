@@ -19,9 +19,9 @@ import java.util.List;
 public class Setting extends AppCompatActivity {
 //private Spinner spinner;
 private static int num = 3,isture = 0;
-private static boolean which_mode = false;
+private static boolean which_mode = false,isVibrate = false;
 private RatingBar ratingBar;
-private Switch aSwitch;
+private Switch aSwitch,sw_vibrate;
 private TextView tv_num;
 private SharedPreferences.Editor editor;
     //private List<String> list_num = new ArrayList<>();
@@ -32,13 +32,16 @@ private SharedPreferences.Editor editor;
 
         tv_num = (TextView) findViewById(R.id.tv_num);
         aSwitch = (Switch) findViewById(R.id.sw);
+        sw_vibrate = (Switch) findViewById(R.id.sw_vibrate);
 
 
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
         num = preferences.getInt("num",2);
         which_mode = preferences.getBoolean("isChecked", false);
+        isVibrate = preferences.getBoolean("isVibrate", false);
 
         aSwitch.setChecked(which_mode);
+        sw_vibrate.setChecked(isVibrate);
 
 
 
@@ -52,6 +55,21 @@ private SharedPreferences.Editor editor;
                     Toast.makeText(Setting.this,"手动输入模式关",Toast.LENGTH_SHORT).show();
                 }
                 editor.putBoolean("isChecked",isChecked);
+                editor.apply();
+            }
+        });
+
+
+        sw_vibrate.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                editor = getSharedPreferences("data_num",MODE_PRIVATE).edit();
+                if(isChecked){
+                    Toast.makeText(Setting.this,"触摸反馈开",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(Setting.this,"触摸反馈关",Toast.LENGTH_SHORT).show();
+                }
+                editor.putBoolean("isVibrate",isChecked);
                 editor.apply();
             }
         });

@@ -4,6 +4,7 @@ package com.luo.matrixcaculator;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -45,14 +46,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private double[][] result,m,n,eigD,eigV,inverse,transpose;// 结果
     private double rank,det;
     private static int num = 3;//小数点保留位数
-    private static boolean which_mode = false;
+    private static boolean which_mode = false;//是否手动输入模式
+    private static boolean isVibrate = false;//是否触摸反馈
     private LinearLayout linear_a1,linear_a2,linear_a3,linear_a4,linear_a5,
             linear_b1,linear_b2,linear_b3,linear_b4,linear_b5,linear_a,linear_b;
     static double id_a[][] = new double[5][5];
     static double id_b[][] = new double[5][5];
     static double data_a[][] = new double[5][5];
     static double data_b[][] = new double[5][5];
-
+    Vibrator vibrator;
 
 
     private DrawerLayout drawerLayout;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
         num = preferences.getInt("num",2);
         which_mode = preferences.getBoolean("isChecked", false);
+        isVibrate = preferences.getBoolean("isVibrate", false);
 
         if (which_mode) {
             linear_a.setVisibility(View.GONE);
@@ -87,6 +90,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         SharedPreferences preferences = getSharedPreferences("data_num", MODE_PRIVATE);
         num = preferences.getInt("num",2);
+
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
         id_a[0][0] = R.id.a_00;
         id_a[0][1] = R.id.a_01;
@@ -742,6 +747,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
+
                 if (flag == 0) {
                     Toast.makeText(MainActivity.this,"还没有点运算符号呢！", Toast.LENGTH_SHORT).show();
                 }else {
@@ -806,6 +815,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.main_A:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 if(which_mode){
                     et_inputA.setText(MyJama.UnitMatrix(num_row_a,num_column_a));
                 }else {
@@ -820,6 +832,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.main_B:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 if(which_mode){
                     et_inputB.setText(MyJama.UnitMatrix(num_row_b,num_column_b));
                 }else {
@@ -836,6 +851,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                break;
 
             case R.id.main_tv_add:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 tv_add.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -843,6 +861,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 1;break;
             case R.id.main_tv_sub:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -850,6 +871,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 2;break;
             case R.id.main_tv_mult:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#86C0EE"));
@@ -857,6 +881,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 3;break;
             case R.id.main_sovle:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -864,6 +891,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 flag = 4;break;
             case R.id.main_sovleTran:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
@@ -871,6 +901,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));
                 flag = 5;break;
             case R.id.main_analysisA:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 if(which_mode){
                     try{
 
@@ -967,6 +1000,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.main_analysisB:
+                if(isVibrate){
+                    vibrator.vibrate(10);
+                }
                 if(which_mode){
                     try{
                         input_b = et_inputB.getText().toString();
@@ -1059,7 +1095,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             case R.id.main_clearAll:
-               // Toast.makeText(MainActivity.this," 99999",Toast.LENGTH_SHORT).show();
+                if(isVibrate){
+                vibrator.vibrate(10);
+            }
                 flag = 0;
                 tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
