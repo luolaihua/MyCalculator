@@ -41,6 +41,9 @@ public class Analysis extends AppCompatActivity {
         StringBuilder sb_eigV = MyJama.output(eigV,num);
         StringBuilder sb_eigD = MyJama.output(eigD,num);
 
+
+
+        
         tv_rank.setText(r+"");
         tv_det.setText(d+"");
         tv_tran.setText(sb_tran.toString());
