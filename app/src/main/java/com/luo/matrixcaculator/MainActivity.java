@@ -309,7 +309,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_row_a = position + 1;
-                if (num_row_a != num_row_b || num_column_a != num_column_b) {
+                CheckColor();
+               /* if (num_row_a != num_row_b || num_column_a != num_column_b) {
                     tv_add.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_sub.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_add.setClickable(false);
@@ -327,7 +328,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                     tv_mult.setClickable(true);
                 }
-
                 //----------A*X=B----ac*cb=ab
                 if (num_row_a  != num_row_b  ) {
                     tv_sovle.setBackgroundColor(Color.parseColor("#F3978F"));
@@ -343,9 +343,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                     tv_sovleTran.setClickable(true);
-                }
-
-
+                }*/
 //-----------------------------------------------------------------------------
 
 
@@ -356,7 +354,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //裁剪矩阵
                 int[][] m = MyJama.FindId(id_a,num_row_a,num_column_a);
                 EditText test;
-                switch (num_column_a){
+                InputShow(num_column_a,linear_a1,linear_a2,linear_a3,linear_a4,linear_a5);
+                /*switch (num_column_a){
                     case 1:
                         linear_a1.setVisibility(View.VISIBLE);
                         linear_a2.setVisibility(View.GONE);
@@ -394,22 +393,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
 
 
-                }
+                }*/
                 //让控件全部GONE---初始化
-                for (int i = 0; i < id_a.length; i++) {
+               /* for (int i = 0; i < id_a.length; i++) {
                     for (int j = 0; j < id_a[i].length; j++) {
                         test = (EditText) findViewById((int)id_a[i][j]);
                         test.setVisibility(View.GONE);
                     }
-                }
+                }*/
+               Input_gone(id_a);
 
                 //让需要的控件VISIBLE
-                for (int i = 0; i < m.length; i++) {
+               /* for (int i = 0; i < m.length; i++) {
                     for (int j = 0; j < m[i].length; j++) {
                         test = (EditText) findViewById(m[i][j]);
                         test.setVisibility(View.VISIBLE);
                     }
-                }
+                }*/
+               Input_visible(m);
+
 
             }
 
@@ -421,7 +423,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_column_a = position + 1;
-                if (num_row_a != num_row_b || num_column_a != num_column_b) {
+                CheckColor();
+               /* if (num_row_a != num_row_b || num_column_a != num_column_b) {
                     tv_add.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_sub.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_add.setClickable(false);
@@ -454,7 +457,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                     tv_sovleTran.setClickable(true);
-                }
+                }*/
                // Toast.makeText(MainActivity.this, num_column_a+"", Toast.LENGTH_SHORT).show();
 
 
@@ -466,8 +469,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 int[][] m = MyJama.FindId(id_a,num_row_a,num_column_a);
                 EditText test;
-
-                switch (num_column_a){
+                InputShow(num_column_a,linear_a1,linear_a2,linear_a3,linear_a4,linear_a5);
+                /*switch (num_column_a){
                     case 1:
                         linear_a1.setVisibility(View.VISIBLE);
                         linear_a2.setVisibility(View.GONE);
@@ -505,23 +508,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
 
 
-                }
+                }*/
                 //让控件全部GONE---初始化
-                for (int i = 0; i < id_a.length; i++) {
+               /* for (int i = 0; i < id_a.length; i++) {
                     for (int j = 0; j < id_a[i].length; j++) {
                         test = (EditText) findViewById((int)id_a[i][j]);
                         test.setVisibility(View.GONE);
                     }
-                }
-
+                }*/
+                Input_gone(id_a);
                 //让需要的控件VISIBLE
-                for (int i = 0; i < m.length; i++) {
+               /* for (int i = 0; i < m.length; i++) {
                     for (int j = 0; j < m[i].length; j++) {
                         test = (EditText) findViewById(m[i][j]);
                         test.setVisibility(View.VISIBLE);
                     }
-                }
-
+                }*/
+                Input_visible(m);
 
             }
 
@@ -533,7 +536,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_row_b = position+1;
-                if (num_row_a != num_row_b || num_column_a != num_column_b) {
+                /*if (num_row_a != num_row_b || num_column_a != num_column_b) {
                     tv_add.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_sub.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_add.setClickable(false);
@@ -566,7 +569,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                     tv_sovleTran.setClickable(true);
-                }
+                }*/
+                CheckColor();
                 //Toast.makeText(MainActivity.this, num_row_b+"", Toast.LENGTH_SHORT).show();
 
 
@@ -580,7 +584,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // int column = (int) Double.parseDouble(b1.getText().toString());
                 int[][] m = MyJama.FindId(id_b,num_row_b,num_column_b);
                 EditText test;
-                switch (num_column_b){
+                InputShow(num_column_b,linear_b1,linear_b2,linear_b3,linear_b4,linear_b5);
+                /*switch (num_column_b){
                     case 1:
                         linear_b1.setVisibility(View.VISIBLE);
                         linear_b2.setVisibility(View.GONE);
@@ -618,22 +623,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
 
 
-                }
+                }*/
                 //让控件全部GONE---初始化
-                for (int i = 0; i < id_b.length; i++) {
+                /*for (int i = 0; i < id_b.length; i++) {
                     for (int j = 0; j < id_b[i].length; j++) {
                         test = (EditText) findViewById((int)id_b[i][j]);
                         test.setVisibility(View.GONE);
                     }
-                }
+                }*/
+                Input_gone(id_b);
 
                 //让需要的控件VISIBLE
-                for (int i = 0; i < m.length; i++) {
+                /*for (int i = 0; i < m.length; i++) {
                     for (int j = 0; j < m[i].length; j++) {
                         test = (EditText) findViewById(m[i][j]);
                         test.setVisibility(View.VISIBLE);
                     }
-                }
+                }*/
+                Input_visible(m);
 
 
             }
@@ -646,7 +653,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_column_b = position+1;
-                if (num_row_a != num_row_b || num_column_a != num_column_b) {
+               /* if (num_row_a != num_row_b || num_column_a != num_column_b) {
                     tv_add.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_sub.setBackgroundColor(Color.parseColor("#F3978F"));
                     tv_add.setClickable(false);
@@ -679,7 +686,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                     tv_sovleTran.setClickable(true);
-                }
+                }*/
+               CheckColor();
                 //  Toast.makeText(MainActivity.this,num_column_b+"", Toast.LENGTH_SHORT).show();
 
 
@@ -692,6 +700,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // int column = (int) Double.parseDouble(b1.getText().toString());
                 int[][] m = MyJama.FindId(id_b,num_row_b,num_column_b);
                 EditText test;
+                InputShow(num_column_b,linear_b1,linear_b2,linear_b3,linear_b4,linear_b5);
+/*
                 switch (num_column_b){
                     case 1:
                         linear_b1.setVisibility(View.VISIBLE);
@@ -730,22 +740,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         break;
 
 
-                }
+                }*/
                 //让控件全部GONE---初始化
-                for (int i = 0; i < id_b.length; i++) {
+               /* for (int i = 0; i < id_b.length; i++) {
                     for (int j = 0; j < id_b[i].length; j++) {
                         test = (EditText) findViewById((int)id_b[i][j]);
                         test.setVisibility(View.GONE);
                     }
-                }
+                }*/
 
+               Input_gone(id_b);
                 //让需要的控件VISIBLE
-                for (int i = 0; i < m.length; i++) {
+                /*for (int i = 0; i < m.length; i++) {
                     for (int j = 0; j < m[i].length; j++) {
                         test = (EditText) findViewById(m[i][j]);
                         test.setVisibility(View.VISIBLE);
                     }
-                }
+                }*/
+                Input_visible(m);
 
 
             }
@@ -832,26 +844,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.main_A:
-               /* if(isVibrate){
-                    vibrator.vibrate(10);
-                }*/
                Vibrate();
                 if(which_mode){
                     et_inputA.setText(MyJama.UnitMatrix(num_row_a,num_column_a));
                 }else {
-
                     Unit(et_a,id_a);
-                    /*
-                    for (int i = 0; i < 5; i++) {
-                        for (int j = 0; j < 5; j++) {
-                            if (i == j) {
-                                et_a = (EditText) findViewById((int)id_a[i][j]);
-                                et_a.setText("1");
-                            }
-                        }
-                    }
-                     */
-
                 }
                 break;
             case R.id.main_B:
@@ -859,78 +856,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(which_mode){
                     et_inputB.setText(MyJama.UnitMatrix(num_row_b,num_column_b));
                 }else {
-
                     Unit(et_b,id_b);
-
-                    /*
-                    for (int i = 0; i < 5; i++) {
-                        for (int j = 0; j < 5; j++) {
-                            if (i == j) {
-                                et_b = (EditText) findViewById((int)id_b[i][j]);
-                                et_b.setText("1");
-                            }
-                        }
-                    }
-                     */
-
                 }
-
                break;
 
             case R.id.main_tv_add:
                 Vibrate();
-                /*tv_add.setBackgroundColor(Color.parseColor("#86C0EE"));
-                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
                 flag = 1;
                 OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
                 break;
             case R.id.main_tv_sub:
                 Vibrate();
-               /* tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sub.setBackgroundColor(Color.parseColor("#86C0EE"));
-                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
                 flag = 2;
                 OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_tv_mult:
                 Vibrate();
-               /* tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_mult.setBackgroundColor(Color.parseColor("#86C0EE"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
-
                 flag = 3;
                 OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_sovle:
                 Vibrate();
-                /*tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#86C0EE"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
                 flag = 4;
                 OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_sovleTran:
                 Vibrate();
-               /* tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));*/
-
                 flag = 5;
                 OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_analysisA:
                 Vibrate();
                 if(which_mode){
                     try{
-
-
                             input_a = et_inputA.getText().toString();
                             double[] a = MyJama.StrToNum(input_a);
                             double[][] m = MyJama.OneToTwo(a, num_row_a, num_column_a);
@@ -1120,12 +1074,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 flag = 0;
                 OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
 
-                /*tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
-
                 spinner_column_a.setSelection(0);
                 spinner_column_b.setSelection(0);
                 spinner_row_a.setSelection(0);
@@ -1180,7 +1128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
    //生成单位矩阵
-    public void Unit(EditText et,double id[][]){
+    public void Unit(EditText et,double[][] id){
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
                 if (i == j) {
@@ -1245,5 +1193,103 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
+    //屏蔽不可进行的操作
+    public void CheckColor(){
+        if (num_row_a != num_row_b || num_column_a != num_column_b) {
+            tv_add.setBackgroundColor(Color.parseColor("#F3978F"));
+            tv_sub.setBackgroundColor(Color.parseColor("#F3978F"));
+            tv_add.setClickable(false);
+            tv_sub.setClickable(false);
+        }else {
+            tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+            tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+            tv_add.setClickable(true);
+            tv_sub.setClickable(true);
+        }
+        if (num_row_a != num_column_b || num_column_a != num_row_b ) {
+            tv_mult.setBackgroundColor(Color.parseColor("#F3978F"));
+            tv_mult.setClickable(false);
+        }else {
+            tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+            tv_mult.setClickable(true);
+        }
+        //----------A*X=B----ac*cb=ab
+        if (num_row_a  != num_row_b  ) {
+            tv_sovle.setBackgroundColor(Color.parseColor("#F3978F"));
+            tv_sovle.setClickable(false);
+        }else {
+            tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+            tv_sovle.setClickable(true);
+        }
+        //----------X*A=B----ac*cb=ab
+        if (num_column_a  != num_column_b  ) {
+            tv_sovleTran.setBackgroundColor(Color.parseColor("#F3978F"));
+            tv_sovleTran.setClickable(false);
+        }else {
+            tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+            tv_sovleTran.setClickable(true);
+        }
+    }
+    //输入控件的出现与消失
+    public void InputShow(int num,LinearLayout l1,LinearLayout l2,LinearLayout l3,LinearLayout l4,LinearLayout l5){
+        switch (num){
+            case 1:
+                l1.setVisibility(View.VISIBLE);
+                l2.setVisibility(View.GONE);
+                l3.setVisibility(View.GONE);
+                l4.setVisibility(View.GONE);
+                l5.setVisibility(View.GONE);
+                break;
+            case 2:
+                l1.setVisibility(View.VISIBLE);
+                l2.setVisibility(View.VISIBLE);
+                l3.setVisibility(View.GONE);
+                l4.setVisibility(View.GONE);
+                l5.setVisibility(View.GONE);
+                break;
+            case 3:
+                l1.setVisibility(View.VISIBLE);
+                l2.setVisibility(View.VISIBLE);
+                l3.setVisibility(View.VISIBLE);
+                l4.setVisibility(View.GONE);
+                l5.setVisibility(View.GONE);
+                break;
+            case 4:
+                l1.setVisibility(View.VISIBLE);
+                l2.setVisibility(View.VISIBLE);
+                l3.setVisibility(View.VISIBLE);
+                l4.setVisibility(View.VISIBLE);
+                l5.setVisibility(View.GONE);
+                break;
+            case 5:
+                l1.setVisibility(View.VISIBLE);
+                l2.setVisibility(View.VISIBLE);
+                l3.setVisibility(View.VISIBLE);
+                l4.setVisibility(View.VISIBLE);
+                l5.setVisibility(View.VISIBLE);
+                break;
 
+
+        }
+    }
+    //初始化控件，使之全部消失
+    public void Input_gone(double[][] id){
+        EditText test;
+        for (int i = 0; i < id.length; i++) {
+            for (int j = 0; j < id[i].length; j++) {
+                test = (EditText) findViewById((int)id[i][j]);
+                test.setVisibility(View.GONE);
+            }
+        }
+    }
+    public void Input_visible(int [][] id){
+        EditText test;
+        for (int i = 0; i < id.length; i++) {
+            for (int j = 0; j < id[i].length; j++) {
+                test = (EditText) findViewById(id[i][j]);
+                test.setVisibility(View.VISIBLE);
+            }
+        }
+
+    }
 }
