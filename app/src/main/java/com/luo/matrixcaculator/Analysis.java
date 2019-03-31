@@ -43,7 +43,7 @@ public class Analysis extends AppCompatActivity {
 
 
 
-        
+
         tv_rank.setText(r+"");
         tv_det.setText(d+"");
         tv_tran.setText(sb_tran.toString());

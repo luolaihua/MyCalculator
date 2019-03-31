@@ -22,17 +22,16 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.luo.matrixcaculator.robo.ChatMainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Jama.Matrix;
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    //下拉栏
     private Spinner spinner_row_a, spinner_column_a,spinner_row_b, spinner_column_b;
+
     private TextView tv_result,tv_equal,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran,tv_clearAll,
             tv_A ,tv_B ,tv_analysisA,tv_analysisB;
     private EditText et_a,et_b,et_inputA,et_inputB;
@@ -42,12 +41,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private List<String> row_b = new ArrayList<>();
     private List<String> column_b = new ArrayList<>();
     private static int num_row_a=1,num_row_b=1,num_column_a=1,num_column_b=1;//a b行列的数量
-    private  int flag = 0;//加减乘除的flag
-    private double[][] result,m,n,eigD,eigV,inverse,transpose;// 结果
-    private double rank,det;
-    private static int num = 3;//小数点保留位数
-    private static boolean which_mode = false;//是否手动输入模式
-    private static boolean isVibrate = false;//是否触摸反馈
+    private  int flag = 0;                                                  //加减乘除的flag
+    private double[][] result,m,n,eigD,eigV,inverse,transpose;              // 结果
+    private double rank,det;                                                //秩和行列式
+    private static int num = 3;                                              //小数点保留位数
+    private static boolean which_mode = false;                              //是否手动输入模式
+    private static boolean isVibrate = false;                               //是否触摸反馈
+
+    //输入框的id
     private LinearLayout linear_a1,linear_a2,linear_a3,linear_a4,linear_a5,
             linear_b1,linear_b2,linear_b3,linear_b4,linear_b5,linear_a,linear_b;
     static double id_a[][] = new double[5][5];
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private DrawerLayout drawerLayout;
 
-//获取小数点保留位数
+//获取小数点保留位数，以及是否触摸反馈
     @Override
     protected void onResume() {
         super.onResume();
@@ -68,7 +69,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         which_mode = preferences.getBoolean("isChecked", false);
         isVibrate = preferences.getBoolean("isVibrate", false);
 
-        if (which_mode) {
+
+        //判断是哪种模式,并显示
+        //which_mode == true ? View.GONE :View.VISIBLE
+        linear_a.setVisibility(which_mode == true ? View.GONE : View.VISIBLE);
+        linear_b.setVisibility(which_mode == true ? View.GONE : View.VISIBLE);
+        et_inputA.setVisibility(which_mode == true ? View.VISIBLE : View.GONE);
+        et_inputB.setVisibility(which_mode == true ? View.VISIBLE : View.GONE);
+
+
+        /*  修改前代码
+         if (which_mode) {
             linear_a.setVisibility(View.GONE);
             linear_b.setVisibility(View.GONE);
             et_inputA.setVisibility(View.VISIBLE);
@@ -80,6 +91,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             et_inputA.setVisibility(View.GONE);
             et_inputB.setVisibility(View.GONE);
         }
+         */
+
     }
 
 
@@ -93,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
+
+        //把输入框的地址全放入数组中
         id_a[0][0] = R.id.a_00;
         id_a[0][1] = R.id.a_01;
         id_a[0][2] = R.id.a_02;
@@ -163,6 +178,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linear_a = (LinearLayout) findViewById(R.id.linear_a);
         linear_b = (LinearLayout) findViewById(R.id.linear_b);
 
+        /*
+
+         */
         et_inputA = (EditText) findViewById(R.id.input_a);
         et_inputB = (EditText) findViewById(R.id.input_b);
 
@@ -221,9 +239,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_B = (TextView) findViewById(R.id.main_B);
         tv_analysisA = (TextView) findViewById(R.id.main_analysisA);
         tv_analysisB = (TextView) findViewById(R.id.main_analysisB);
-
-
-
 
         et_b = (EditText) findViewById(R.id.et_b);
         et_a = (EditText) findViewById(R.id.et_a);
@@ -338,6 +353,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 //int row = (int) Double.parseDouble(b0.getText().toString());
                // int column = (int) Double.parseDouble(b1.getText().toString());
+                //裁剪矩阵
                 int[][] m = MyJama.FindId(id_a,num_row_a,num_column_a);
                 EditText test;
                 switch (num_column_a){
@@ -450,6 +466,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 int[][] m = MyJama.FindId(id_a,num_row_a,num_column_a);
                 EditText test;
+
                 switch (num_column_a){
                     case 1:
                         linear_a1.setVisibility(View.VISIBLE);
@@ -815,12 +832,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.main_A:
-                if(isVibrate){
+               /* if(isVibrate){
                     vibrator.vibrate(10);
-                }
+                }*/
+               Vibrate();
                 if(which_mode){
                     et_inputA.setText(MyJama.UnitMatrix(num_row_a,num_column_a));
                 }else {
+
+                    Unit(et_a,id_a);
+                    /*
                     for (int i = 0; i < 5; i++) {
                         for (int j = 0; j < 5; j++) {
                             if (i == j) {
@@ -829,15 +850,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                         }
                     }
+                     */
+
                 }
                 break;
             case R.id.main_B:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
+                Vibrate();
                 if(which_mode){
                     et_inputB.setText(MyJama.UnitMatrix(num_row_b,num_column_b));
                 }else {
+
+                    Unit(et_b,id_b);
+
+                    /*
                     for (int i = 0; i < 5; i++) {
                         for (int j = 0; j < 5; j++) {
                             if (i == j) {
@@ -846,64 +871,62 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                         }
                     }
+                     */
+
                 }
 
                break;
 
             case R.id.main_tv_add:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
-                tv_add.setBackgroundColor(Color.parseColor("#86C0EE"));
+                Vibrate();
+                /*tv_add.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                flag = 1;break;
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
+                flag = 1;
+                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
+                break;
             case R.id.main_tv_sub:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
-                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                Vibrate();
+               /* tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                flag = 2;break;
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
+                flag = 2;
+                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_tv_mult:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
-                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                Vibrate();
+               /* tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#86C0EE"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                flag = 3;break;
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
+
+                flag = 3;
+                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_sovle:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
-                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                Vibrate();
+                /*tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#86C0EE"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                flag = 4;break;
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
+                flag = 4;
+                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_sovleTran:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
-                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                Vibrate();
+               /* tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));
-                flag = 5;break;
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));*/
+
+                flag = 5;
+                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_analysisA:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
+                Vibrate();
                 if(which_mode){
                     try{
 
@@ -1000,9 +1023,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.main_analysisB:
-                if(isVibrate){
-                    vibrator.vibrate(10);
-                }
+                Vibrate();
                 if(which_mode){
                     try{
                         input_b = et_inputB.getText().toString();
@@ -1095,15 +1116,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 }
             case R.id.main_clearAll:
-                if(isVibrate){
-                vibrator.vibrate(10);
-            }
+                Vibrate();
                 flag = 0;
-                tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
+
+                /*tv_add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
                 tv_sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
-                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                tv_sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));*/
 
                 spinner_column_a.setSelection(0);
                 spinner_column_b.setSelection(0);
@@ -1126,15 +1147,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 tv_result.setText("0  0\n0  0");
         }
     }
-
-
-
-
-
-
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -1165,6 +1177,73 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+   //生成单位矩阵
+    public void Unit(EditText et,double id[][]){
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+                if (i == j) {
+                    et = (EditText) findViewById((int)id[i][j]);
+                    et.setText("1");
+                }
+            }
+        }
+    }
+    //触摸反馈
+    public void Vibrate(){
+        if(isVibrate){
+            vibrator.vibrate(10);
+        }
+    }
+    //改变操作符颜色
+    public void OperatorColor(int f, TextView add, TextView sub, TextView mult, TextView sovle, TextView sovleTran){
+
+        switch (f){
+            case 0:
+                 add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                 sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                 mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                 sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                 sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                break;
+            case 1:
+                add.setBackgroundColor(Color.parseColor("#86C0EE"));
+                sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                break;
+            case 2:
+                add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sub.setBackgroundColor(Color.parseColor("#86C0EE"));
+                mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                break;
+            case 3:
+                add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                mult.setBackgroundColor(Color.parseColor("#86C0EE"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                break;
+            case 4:
+                add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#86C0EE"));
+                sovleTran.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                break;
+            case 5:
+                add.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sub.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                mult.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovle.setBackgroundColor(Color.parseColor("#6FE2EDF5"));
+                sovleTran.setBackgroundColor(Color.parseColor("#86C0EE"));
+                break;
+        }
+
     }
 
 }
