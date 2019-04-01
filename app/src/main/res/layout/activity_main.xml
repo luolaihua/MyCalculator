@@ -29,33 +29,7 @@
                 android:layout_weight="3"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/main_A"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@layout/selector"
-                    android:gravity="center"
-                    android:text="A"
-                    android:textSize="30sp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/row_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"></Spinner>
-
-                    <Spinner
-                        android:id="@+id/column_a"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"></Spinner>
-                </LinearLayout>
                 <LinearLayout
                     android:id="@+id/linear_a"
                     android:layout_width="0dp"
@@ -360,7 +334,6 @@
                             android:inputType="numberDecimal" />
                     </LinearLayout>
                 </LinearLayout>
-
                 <EditText
                     android:visibility="gone"
                     android:background="@null"
@@ -370,6 +343,34 @@
                     android:layout_weight="8"
                     android:gravity="center"
                     android:hint="输入矩阵" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/row_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"></Spinner>
+
+                    <Spinner
+                        android:id="@+id/column_a"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"></Spinner>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/main_A"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@layout/selector"
+                    android:gravity="center"
+                    android:text="A"
+                    android:textSize="30sp" />
 
 
             </LinearLayout>
@@ -466,33 +467,7 @@
                 android:layout_weight="3"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/main_B"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@layout/selector"
-                    android:gravity="center"
-                    android:text="B"
-                    android:textSize="30sp" />
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/row_b"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"></Spinner>
-
-                    <Spinner
-                        android:id="@+id/column_b"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"></Spinner>
-                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linear_b"
@@ -794,8 +769,6 @@
                             android:inputType="numberDecimal" />
                     </LinearLayout>
                 </LinearLayout>
-
-
                 <EditText
                     android:visibility="gone"
                     android:background="@null"
@@ -805,6 +778,34 @@
                     android:layout_weight="8"
                     android:gravity="center"
                     android:hint="输入矩阵" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:id="@+id/row_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"></Spinner>
+
+                    <Spinner
+                        android:id="@+id/column_b"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"></Spinner>
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/main_B"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@layout/selector"
+                    android:gravity="center"
+                    android:text="B"
+                    android:textSize="30sp" />
+
 
 
             </LinearLayout>
@@ -825,6 +826,23 @@
                 android:layout_weight="3"
                 android:orientation="horizontal">
 
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="C"
+                    android:background="#6FE9F0F7"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/main_tv_result"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="9"
+                    android:gravity="center"
+                    android:text="0,0,0,0\n0,0,0,0\n0,0,0,0\n0,0,0,0\n"
+                    android:textIsSelectable="true" />
                 <TextView
                     android:id="@+id/main_clearAll"
                     android:layout_width="0dp"
@@ -834,15 +852,6 @@
                     android:gravity="center"
                     android:text="X"
                     android:textSize="30sp" />
-
-                <TextView
-                    android:id="@+id/main_tv_result"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9"
-                    android:gravity="center"
-                    android:text="0,0,0,0\n0,0,0,0\n0,0,0,0\n0,0,0,0\n"
-                    android:textIsSelectable="true" />
 
 
             </LinearLayout>

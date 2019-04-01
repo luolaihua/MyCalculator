@@ -28,7 +28,7 @@ import com.luo.matrixcaculator.robo.ChatMainActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener {
     //下拉栏
     private Spinner spinner_row_a, spinner_column_a,spinner_row_b, spinner_column_b;
 
@@ -235,7 +235,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_analysisB.setOnClickListener(this);
         tv_B.setOnClickListener(this);
         tv_A.setOnClickListener(this);
-
+        tv_A.setOnLongClickListener(this);
+        tv_B.setOnLongClickListener(this);
 
 
         //设置下拉栏属性
@@ -456,7 +457,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-
+    @Override
+    public boolean onLongClick(View v) {
+        //Toast.makeText(MainActivity.this," 11111111111111",Toast.LENGTH_SHORT).show();
+        switch (v.getId()){
+            case R.id.main_A:
+                Vibrate();
+                Toast.makeText(MainActivity.this," 11111111111111",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.main_B:
+                Vibrate();
+                Toast.makeText(MainActivity.this," 222222222222",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -505,34 +520,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             double[] a = MyJama.StrToNum(input_a);
                             double[][] m = MyJama.OneToTwo(a, num_row_a, num_column_a);
                             Analysis(m);
-/*
-                            Intent intent = new Intent(MainActivity.this, Analysis.class);
 
-                            rank = MyJama.matrixRank(m);
-                            det = MyJama.matrixDet(m);
-                            transpose = MyJama.matrixTranspose(m);
-                            eigD = MyJama.matrixEigD(m);
-                            eigV = MyJama.matrixEigV(m);
-
-                            //二维变一维
-                            double[] tranOne = MyJama.TwotoOne(transpose);
-                            double[] eigDOne = MyJama.TwotoOne(eigD);
-                            double[] eigVOne = MyJama.TwotoOne(eigV);
-
-
-                            intent.putExtra("rank",rank);
-                            intent.putExtra("det", det);
-                            intent.putExtra("transpose", tranOne);
-                            intent.putExtra("eigD", eigDOne);
-                            intent.putExtra("eigV", eigVOne);
-
-                            if(det != 0){
-                                inverse = MyJama.matrixInverse(m);
-                                double[] inverseOne = MyJama.TwotoOne(inverse);
-                                intent.putExtra("inverse", inverseOne);
-                            }
-
-                            startActivity(intent);*/
                             break;
                         }catch (Exception e) {
                         Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
@@ -557,34 +545,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                     try{
-
-                       /* Intent intent = new Intent(MainActivity.this, Analysis.class);
-
-                        rank = MyJama.matrixRank(m);
-                        det = MyJama.matrixDet(m);
-                        transpose = MyJama.matrixTranspose(m);
-                        eigD = MyJama.matrixEigD(m);
-                        eigV = MyJama.matrixEigV(m);
-
-                        //二维变一维
-                        double[] tranOne = MyJama.TwotoOne(transpose);
-                        double[] eigDOne = MyJama.TwotoOne(eigD);
-                        double[] eigVOne = MyJama.TwotoOne(eigV);
-
-
-                        intent.putExtra("rank",rank);
-                        intent.putExtra("det", det);
-                        intent.putExtra("transpose", tranOne);
-                        intent.putExtra("eigD", eigDOne);
-                        intent.putExtra("eigV", eigVOne);
-
-                        if(det != 0){
-                            inverse = MyJama.matrixInverse(m);
-                            double[] inverseOne = MyJama.TwotoOne(inverse);
-                            intent.putExtra("inverse", inverseOne);
-                        }
-
-                        startActivity(intent);*/
                         Analysis(m);
                         break;
                     }catch (Exception e) {
@@ -602,33 +562,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         double[] b = MyJama.StrToNum(input_b);
                         double[][] n = MyJama.OneToTwo(b, num_row_b, num_column_b);
 
-                       /* Intent intent = new Intent(MainActivity.this, Analysis.class);
-
-                        rank = MyJama.matrixRank(n);
-                        det = MyJama.matrixDet(n);
-                        transpose = MyJama.matrixTranspose(n);
-                        eigD = MyJama.matrixEigD(n);
-                        eigV = MyJama.matrixEigV(n);
-
-                        //二维变一维
-                        double[] tranOne = MyJama.TwotoOne(transpose);
-                        double[] eigDOne = MyJama.TwotoOne(eigD);
-                        double[] eigVOne = MyJama.TwotoOne(eigV);
-
-
-                        intent.putExtra("rank",rank);
-                        intent.putExtra("det", det);
-                        intent.putExtra("transpose", tranOne);
-                        intent.putExtra("eigD", eigDOne);
-                        intent.putExtra("eigV", eigVOne);
-
-                        if(det != 0){
-                            inverse = MyJama.matrixInverse(n);
-                            double[] inverseOne = MyJama.TwotoOne(inverse);
-                            intent.putExtra("inverse", inverseOne);
-                        }
-
-                        startActivity(intent);*/
                         Analysis(n);
                         break;
                     }catch (Exception e) {
@@ -655,36 +588,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     try{
                         Analysis(n);
-/*
-                        Intent intent = new Intent(MainActivity.this, Analysis.class);
-
-                        rank = MyJama.matrixRank(n);
-                        det = MyJama.matrixDet(n);
-                        transpose = MyJama.matrixTranspose(n);
-                        eigD = MyJama.matrixEigD(n);
-                        eigV = MyJama.matrixEigV(n);
-
-                        //二维变一维
-                        double[] tranOne = MyJama.TwotoOne(transpose);
-                        double[] eigDOne = MyJama.TwotoOne(eigD);
-                        double[] eigVOne = MyJama.TwotoOne(eigV);
-
-
-                        intent.putExtra("rank",rank);
-                        intent.putExtra("det", det);
-                        intent.putExtra("transpose", tranOne);
-                        intent.putExtra("eigD", eigDOne);
-                        intent.putExtra("eigV", eigVOne);
-
-                        if(det != 0){
-                            inverse = MyJama.matrixInverse(n);
-                            double[] inverseOne = MyJama.TwotoOne(inverse);
-                            intent.putExtra("inverse", inverseOne);
-                        }
-
-                        startActivity(intent);*/
-
-
                         break;
                     }catch (Exception e) {
                         Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
@@ -946,4 +849,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         startActivity(intent);
     }
+
+
 }
