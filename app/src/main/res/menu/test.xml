@@ -5,11 +5,15 @@
         android:id="@+id/setting"
         android:title="设置"
         />
-    <item
+
+    <!--
+     <item
         android:id="@+id/robo"
         android:title="罗小炮"
         android:icon="@drawable/panda"
         app:showAsAction="ifRoom"
         />
+    -->
+
 
 </menu>

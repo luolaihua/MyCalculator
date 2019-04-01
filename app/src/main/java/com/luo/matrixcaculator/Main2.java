@@ -529,9 +529,9 @@ public class Main2 extends AppCompatActivity implements View.OnClickListener{
                 Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
                 *//*Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
                 startActivity(intent2);finish();*//*break;*/
-            case R.id.robo:
+           /* case R.id.robo:
                 Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
-                startActivity(intent3);break;
+                startActivity(intent3);break;*/
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);break;
 

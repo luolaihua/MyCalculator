@@ -45,9 +45,9 @@ public class BaseActivity extends AppCompatActivity {
                 Toast.makeText(MyApplication.getContext(),"功能正在开发...",Toast.LENGTH_SHORT).show();
                 *//*Intent intent2 = new Intent(MyApplication.getContext(),FourCompute.class);
                 startActivity(intent2);finish();*//*break;*/
-            case R.id.robo:
-                /*Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
-                startActivity(intent3);*/finish();break;
+            /*case R.id.robo:
+                *//*Intent intent3 = new Intent(MyApplication.getContext(), ChatMainActivity.class);
+                startActivity(intent3);*//*finish();break;*/
 
         }
         return super.onOptionsItemSelected(item);
