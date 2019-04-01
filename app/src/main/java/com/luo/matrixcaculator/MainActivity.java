@@ -77,22 +77,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         et_inputA.setVisibility(which_mode == true ? View.VISIBLE : View.GONE);
         et_inputB.setVisibility(which_mode == true ? View.VISIBLE : View.GONE);
 
-
-        /*  修改前代码
-         if (which_mode) {
-            linear_a.setVisibility(View.GONE);
-            linear_b.setVisibility(View.GONE);
-            et_inputA.setVisibility(View.VISIBLE);
-            et_inputB.setVisibility(View.VISIBLE);
-
-        }else {
-            linear_a.setVisibility(View.VISIBLE);
-            linear_b.setVisibility(View.VISIBLE);
-            et_inputA.setVisibility(View.GONE);
-            et_inputB.setVisibility(View.GONE);
-        }
-         */
-
     }
 
 
@@ -178,9 +162,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         linear_a = (LinearLayout) findViewById(R.id.linear_a);
         linear_b = (LinearLayout) findViewById(R.id.linear_b);
 
-        /*
-
-         */
         et_inputA = (EditText) findViewById(R.id.input_a);
         et_inputB = (EditText) findViewById(R.id.input_b);
 
@@ -309,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_row_a = position + 1;
-                CheckColor();
+                Check_ChangeColor();
 
 //-----------------------------------------------------------------------------
 
@@ -318,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //裁剪矩阵
                 int[][] m = MyJama.FindId(id_a,num_row_a,num_column_a);
                 EditText test;
-                InputShow(num_column_a,linear_a1,linear_a2,linear_a3,linear_a4,linear_a5);
+                InputShow_linearlayout(num_column_a,linear_a1,linear_a2,linear_a3,linear_a4,linear_a5);
 
                 //让控件全部GONE---初始化
                      Input_gone(id_a);
@@ -334,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_column_a = position + 1;
-                CheckColor();
+                Check_ChangeColor();
 
 //-----------------------------------------------------------------------------
 
@@ -342,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 int[][] m = MyJama.FindId(id_a,num_row_a,num_column_a);
                 EditText test;
-                InputShow(num_column_a,linear_a1,linear_a2,linear_a3,linear_a4,linear_a5);
+                InputShow_linearlayout(num_column_a,linear_a1,linear_a2,linear_a3,linear_a4,linear_a5);
 
                 //让控件全部GONE---初始化
                 Input_gone(id_a);
@@ -365,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 int[][] m = MyJama.FindId(id_b,num_row_b,num_column_b);
                 EditText test;
-                InputShow(num_column_b,linear_b1,linear_b2,linear_b3,linear_b4,linear_b5);
+                InputShow_linearlayout(num_column_b,linear_b1,linear_b2,linear_b3,linear_b4,linear_b5);
 
                 //让控件全部GONE---初始化
                 Input_gone(id_b);
@@ -383,14 +364,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 num_column_b = position+1;
-               CheckColor();
+               Check_ChangeColor();
 
 //-----------------------------------------------------------------------------
 
                 //控件的出现与消失
                 int[][] m = MyJama.FindId(id_b,num_row_b,num_column_b);
                 EditText test;
-                InputShow(num_column_b,linear_b1,linear_b2,linear_b3,linear_b4,linear_b5);
+                InputShow_linearlayout(num_column_b,linear_b1,linear_b2,linear_b3,linear_b4,linear_b5);
 
                 //让控件全部GONE---初始化
                Input_gone(id_b);
@@ -499,24 +480,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_tv_add:
                 Vibrate();
                 flag = 1;
-                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
-                break;
+                ChangeOperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_tv_sub:
                 Vibrate();
                 flag = 2;
-                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
+                ChangeOperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_tv_mult:
                 Vibrate();
                 flag = 3;
-                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
+                ChangeOperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_sovle:
                 Vibrate();
                 flag = 4;
-                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
+                ChangeOperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_sovleTran:
                 Vibrate();
                 flag = 5;
-                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
+                ChangeOperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);break;
             case R.id.main_analysisA:
                 Vibrate();
                 if(which_mode){
@@ -524,7 +504,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             input_a = et_inputA.getText().toString();
                             double[] a = MyJama.StrToNum(input_a);
                             double[][] m = MyJama.OneToTwo(a, num_row_a, num_column_a);
-
+                            Analysis(m);
+/*
                             Intent intent = new Intent(MainActivity.this, Analysis.class);
 
                             rank = MyJama.matrixRank(m);
@@ -551,7 +532,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 intent.putExtra("inverse", inverseOne);
                             }
 
-                            startActivity(intent);
+                            startActivity(intent);*/
                             break;
                         }catch (Exception e) {
                         Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
@@ -577,7 +558,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     try{
 
-                        Intent intent = new Intent(MainActivity.this, Analysis.class);
+                       /* Intent intent = new Intent(MainActivity.this, Analysis.class);
 
                         rank = MyJama.matrixRank(m);
                         det = MyJama.matrixDet(m);
@@ -603,7 +584,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             intent.putExtra("inverse", inverseOne);
                         }
 
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        Analysis(m);
                         break;
                     }catch (Exception e) {
                         Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
@@ -620,7 +602,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         double[] b = MyJama.StrToNum(input_b);
                         double[][] n = MyJama.OneToTwo(b, num_row_b, num_column_b);
 
-                        Intent intent = new Intent(MainActivity.this, Analysis.class);
+                       /* Intent intent = new Intent(MainActivity.this, Analysis.class);
 
                         rank = MyJama.matrixRank(n);
                         det = MyJama.matrixDet(n);
@@ -646,7 +628,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             intent.putExtra("inverse", inverseOne);
                         }
 
-                        startActivity(intent);
+                        startActivity(intent);*/
+                        Analysis(n);
                         break;
                     }catch (Exception e) {
                         Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
@@ -671,7 +654,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                     try{
-
+                        Analysis(n);
+/*
                         Intent intent = new Intent(MainActivity.this, Analysis.class);
 
                         rank = MyJama.matrixRank(n);
@@ -698,7 +682,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             intent.putExtra("inverse", inverseOne);
                         }
 
-                        startActivity(intent);
+                        startActivity(intent);*/
+
+
                         break;
                     }catch (Exception e) {
                         Toast.makeText(MainActivity.this,"输入有误...2",Toast.LENGTH_SHORT).show();
@@ -708,7 +694,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.main_clearAll:
                 Vibrate();
                 flag = 0;
-                OperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
+                ChangeOperatorColor(flag,tv_add,tv_sub,tv_mult,tv_sovle,tv_sovleTran);
 
                 spinner_column_a.setSelection(0);
                 spinner_column_b.setSelection(0);
@@ -781,7 +767,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     //改变操作符颜色
-    public void OperatorColor(int f, TextView add, TextView sub, TextView mult, TextView sovle, TextView sovleTran){
+    public void ChangeOperatorColor(int f, TextView add, TextView sub, TextView mult, TextView sovle, TextView sovleTran){
 
         switch (f){
             case 0:
@@ -830,7 +816,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     //屏蔽不可进行的操作
-    public void CheckColor(){
+    public void Check_ChangeColor(){
         if (num_row_a != num_row_b || num_column_a != num_column_b) {
             tv_add.setBackgroundColor(Color.parseColor("#F3978F"));
             tv_sub.setBackgroundColor(Color.parseColor("#F3978F"));
@@ -867,7 +853,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
     //输入控件的出现与消失
-    public void InputShow(int num,LinearLayout l1,LinearLayout l2,LinearLayout l3,LinearLayout l4,LinearLayout l5){
+    public void InputShow_linearlayout(int num, LinearLayout l1, LinearLayout l2, LinearLayout l3, LinearLayout l4, LinearLayout l5){
         switch (num){
             case 1:
                 l1.setVisibility(View.VISIBLE);
@@ -918,6 +904,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+    //显示需要的空间
     public void Input_visible(int [][] id){
         EditText test;
         for (int i = 0; i < id.length; i++) {
@@ -927,5 +914,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
+    }
+    //矩阵分析
+    public void Analysis(double [][] m){
+
+        Intent intent = new Intent(MainActivity.this, Analysis.class);
+
+        rank = MyJama.matrixRank(m);
+        det = MyJama.matrixDet(m);
+        transpose = MyJama.matrixTranspose(m);
+        eigD = MyJama.matrixEigD(m);
+        eigV = MyJama.matrixEigV(m);
+
+        //二维变一维
+        double[] tranOne = MyJama.TwotoOne(transpose);
+        double[] eigDOne = MyJama.TwotoOne(eigD);
+        double[] eigVOne = MyJama.TwotoOne(eigV);
+
+
+        intent.putExtra("rank",rank);
+        intent.putExtra("det", det);
+        intent.putExtra("transpose", tranOne);
+        intent.putExtra("eigD", eigDOne);
+        intent.putExtra("eigV", eigVOne);
+
+        if(det != 0){
+            inverse = MyJama.matrixInverse(m);
+            double[] inverseOne = MyJama.TwotoOne(inverse);
+            intent.putExtra("inverse", inverseOne);
+        }
+
+        startActivity(intent);
     }
 }
