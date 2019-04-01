@@ -23,8 +23,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.luo.matrixcaculator.robo.ChatMainActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,9 +218,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv_B = (TextView) findViewById(R.id.main_B);
         tv_analysisA = (TextView) findViewById(R.id.main_analysisA);
         tv_analysisB = (TextView) findViewById(R.id.main_analysisB);
-
-        et_b = (EditText) findViewById(R.id.et_b);
-        et_a = (EditText) findViewById(R.id.et_a);
 
 
         tv_add.setOnClickListener(this);

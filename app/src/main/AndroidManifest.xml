@@ -12,21 +12,10 @@
         android:roundIcon="@drawable/g4"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main2"></activity>
         <activity android:name=".Setting" />
-        <activity android:name=".CounterActivity" />
         <activity
             android:name=".Analysis"
             android:label="Analysis" />
-        <activity
-            android:name=".FourCompute"
-            android:label="四阶矩阵计算" />
-        <activity
-            android:name=".TwoCompute"
-            android:label="二阶矩阵计算" />
-        <activity
-            android:name=".ThreeCompute"
-            android:label="三阶矩阵计算" />
         <activity
             android:name=".MainActivity"
             >
@@ -36,10 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".robo.ChatMainActivity"
-            android:label="罗小炮"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
+
     </application>
 
 </manifest>
